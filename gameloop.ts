@@ -11,7 +11,7 @@ let drawIntervalId : number | undefined = window.setInterval(draw, FRAME_LENGTH)
 
 function draw(){
     // Clear the stage!
-    ctx.clearRect(0,0,canvas.width, canvas.height);
+    ctx.clearRect(0,0,canvas.width, canvas.height); // somehow get this to clear the images
 
     // Re-draw all the actors!
     for (const actor of actorList.actors){
