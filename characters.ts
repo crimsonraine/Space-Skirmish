@@ -1,26 +1,33 @@
-class Character {
+class Character extends Actor{
     
-    x : number;
-    y : number;
+    // x : number;
+    // y : number;
     leftPic : string;
     rightPic : string;
     goingLeft : boolean;
+    xVelocity : number;
+    yVelocity : number;
 
 
     constructor(x : number, y : number, picturel : string, picturer : string, goingLeft : boolean) {
-        this.x = x;
-        this.y = y;
+        super(x, y)
         this.leftPic = picturel;
         this.rightPic = picturer;
         this.goingLeft = goingLeft;
+        this.xVelocity = 0
+        this.yVelocity = 0
     }
 
     draw() : void {
         // all this to get an image on there - haven't tested yet, feel free to change
         // honestly Christina and Mika if you have anything better please add it here
         let img = new Image(); // took this off stack overflow
+        //oc.width = img.width * 0.75;
+        //oc.height = img.height * 0.75;
+        img.height = 100
+        img.width = 100
         img.onload = () => {
-            ctx.drawImage(img, this.x, this.y);
+            ctx.drawImage(img, this.x, this.y, img.width, img.height);
         }
         ctx.drawImage(img, this.x, this.y);
         if (this.goingLeft) 
@@ -31,11 +38,21 @@ class Character {
 
 
     update() : void { // for movement
-        this.x += 1 // for now
+        //this.x += 1 // for now
+        this.x += this.xVelocity
+        this.y += this.yVelocity
     }
 
     moveLeft() : void {
-        this.x -= 1
+        this.xVelocity -= 1
+    }
+
+    moveRight() : void {
+        this.xVelocity += 1
+    }
+
+    moveUp() : void {
+        this.yVelocity -= 1
     }
 
 }

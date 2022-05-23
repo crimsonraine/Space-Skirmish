@@ -1,7 +1,8 @@
 // Some standard user-input events. Define handling of these events here.
 
 // test character, gotta change all the methods below.
-let player : Character = new Character(canvas.width / 2, canvas.height - 20, 'kombatchar.png', 'kombatchar.png', true);
+let player : Character = new Character(canvas.width / 2, canvas.height - 100, 'imgs/kombatchar.png', 'imgs/kombatchar.png', true);
+let player2 : Character = new Character(canvas.width / 4, canvas.height - 100, 'imgs/kombatchar.png', 'imgs/kombatchar.png', true);
 
 window.addEventListener("load", function() {
     //Handle when the whole page finishes loading
@@ -31,10 +32,14 @@ document.addEventListener("keydown", function(event: KeyboardEvent){
         player.moveLeft();
     if (event.key === "ArrowRight")
         player.moveRight();
+    if (event.key === "ArrowUp")
+        player2.moveUp();
     if (event.key === "a")
         player2.moveLeft();
     if (event.key === "d")
         player2.moveRight();
+    if (event.key === "w")
+        player2.moveUp();
         
 });
 
@@ -61,13 +66,13 @@ document.addEventListener("keyup", function(event:KeyboardEvent){
 // let lastMousePosition = {x: 0, y:0};
 // let keysStatus = {leftKeyDown: false, rightKeyDown: false};
 
-setInterval( function() {
-    actorList.addActor( new Fruit( Math.random() * canvas.width, -50));
-}, 2000)
+// setInterval( function() {
+//     actorList.addActor( new Fruit( Math.random() * canvas.width, -50));
+// }, 2000)
 
-setTimeout(createRock, Math.random() * 2000 + 1000);
+// setTimeout(createRock, Math.random() * 2000 + 1000);
 
-function createRock(){
-    actorList.addActor( new Rock( Math.random() * canvas.width, -50));
-    setTimeout(createRock, Math.random() * 2000 + 1000);
-}
+// function createRock(){
+//     actorList.addActor( new Rock( Math.random() * canvas.width, -50));
+//     setTimeout(createRock, Math.random() * 2000 + 1000);
+// }

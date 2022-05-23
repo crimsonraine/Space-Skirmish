@@ -1,6 +1,8 @@
+"use strict";
 // Some standard user-input events. Define handling of these events here.
-var player = new Player(canvas.width / 2, canvas.height - 20);
-var player2 = new Player(canvas.width / 4, canvas.height - 10);
+// test character, gotta change all the methods below.
+let player = new Character(canvas.width / 2, canvas.height - 100, 'imgs/kombatchar.png', 'imgs/kombatchar.png', true);
+let player2 = new Character(canvas.width / 4, canvas.height - 100, 'imgs/kombatchar.png', 'imgs/kombatchar.png', true);
 window.addEventListener("load", function () {
     //Handle when the whole page finishes loading
     //Use this to "set up" the initial state of things;
@@ -24,10 +26,14 @@ document.addEventListener("keydown", function (event) {
         player.moveLeft();
     if (event.key === "ArrowRight")
         player.moveRight();
+    if (event.key === "ArrowUp")
+        player2.moveUp();
     if (event.key === "a")
         player2.moveLeft();
     if (event.key === "d")
         player2.moveRight();
+    if (event.key === "w")
+        player2.moveUp();
 });
 document.addEventListener("keyup", function (event) {
     //Handle keydown events
@@ -44,11 +50,11 @@ document.addEventListener("keyup", function (event) {
 // Some samples:
 // let lastMousePosition = {x: 0, y:0};
 // let keysStatus = {leftKeyDown: false, rightKeyDown: false};
-setInterval(function () {
-    actorList.addActor(new Fruit(Math.random() * canvas.width, -50));
-}, 2000);
-setTimeout(createRock, Math.random() * 2000 + 1000);
-function createRock() {
-    actorList.addActor(new Rock(Math.random() * canvas.width, -50));
-    setTimeout(createRock, Math.random() * 2000 + 1000);
-}
+// setInterval( function() {
+//     actorList.addActor( new Fruit( Math.random() * canvas.width, -50));
+// }, 2000)
+// setTimeout(createRock, Math.random() * 2000 + 1000);
+// function createRock(){
+//     actorList.addActor( new Rock( Math.random() * canvas.width, -50));
+//     setTimeout(createRock, Math.random() * 2000 + 1000);
+// }
