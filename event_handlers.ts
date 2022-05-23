@@ -1,7 +1,7 @@
 // Some standard user-input events. Define handling of these events here.
 
-let player : Player = new Player(canvas.width / 2, canvas.height - 20);
-let player2 : Player2 = new Player(canvas.width / 4, canvas.height - 10);
+// test character, gotta change all the methods below.
+let player : Character = new Character(canvas.width / 2, canvas.height - 20, 'kombatchar.png', 'kombatchar.png', true);
 
 window.addEventListener("load", function() {
     //Handle when the whole page finishes loading

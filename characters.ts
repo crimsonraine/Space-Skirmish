@@ -1,4 +1,4 @@
-class Actor {
+class Character {
     
     x : number;
     y : number;
@@ -31,6 +31,11 @@ class Actor {
 
 
     update() : void { // for movement
+        this.x += 1 // for now
+    }
+
+    moveLeft() : void {
+        this.x -= 1
     }
 
 }
