@@ -4,9 +4,9 @@ const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 const FRAME_LENGTH = 30;
 const characterList = new CharacterList();
-//Draw ~ 30 times a second
-let drawIntervalId = window.setInterval(draw, FRAME_LENGTH);
-function draw() {
+// Draw ~ 30 times a second
+// let drawIntervalId : number | undefined = window.setInterval(draw, FRAME_LENGTH);
+function draw(time) {
     // Clear the stage!
     ctx.clearRect(0, 0, canvas.width, canvas.height); // somehow get this to clear the images
     // Re-draw all the characters!
@@ -17,16 +17,18 @@ function draw() {
     for (const character of characterList.characters) {
         character.update();
     }
+    drawAnimationFrameID = requestAnimationFrame(draw);
 }
+let drawAnimationFrameID = requestAnimationFrame(draw);
 // Functions to control (pause/continue) the game loop.
 function pauseDrawing() {
-    if (drawIntervalId !== undefined)
-        clearInterval(drawIntervalId);
-    drawIntervalId = undefined;
+    if (drawAnimationFrameID !== undefined)
+        cancelAnimationFrame(drawAnimationFrameID);
+    drawAnimationFrameID = undefined;
 }
 function continueDrawing() {
-    if (drawIntervalId === undefined)
-        drawIntervalId = window.setInterval(draw, FRAME_LENGTH);
+    if (drawAnimationFrameID === undefined)
+        drawAnimationFrameID = requestAnimationFrame(draw);
 }
 document.querySelector("#pause").addEventListener("click", pauseDrawing);
 document.querySelector("#continue").addEventListener("click", continueDrawing);

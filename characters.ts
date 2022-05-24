@@ -7,6 +7,9 @@ class Character extends Actor{
     goingLeft : boolean;
     xVelocity : number;
     yVelocity : number;
+    height : number;
+    width : number;
+    img : HTMLImageElement;
 
 
     constructor(x : number, y : number, picturel : string, picturer : string, goingLeft : boolean) {
@@ -16,24 +19,26 @@ class Character extends Actor{
         this.goingLeft = goingLeft;
         this.xVelocity = 0
         this.yVelocity = 0
+        this.height = 100
+        this.width = 100
+        this.img = new Image();
     }
 
     draw() : void {
         // all this to get an image on there - haven't tested yet, feel free to change
         // honestly Christina and Mika if you have anything better please add it here
-        let img = new Image(); // took this off stack overflow
+        // took this off stack overflow
         //oc.width = img.width * 0.75;
         //oc.height = img.height * 0.75;
-        img.height = 100
-        img.width = 100
-        img.onload = () => {
-            ctx.drawImage(img, this.x, this.y, img.width, img.height);
-        }
-        ctx.drawImage(img, this.x, this.y);
+        // img.onload = () => {
+        //     ctx.drawImage(img, this.x, this.y, img.width, img.height);
+        // }
         if (this.goingLeft) 
-            img.src = this.leftPic
+            this.img.src = this.leftPic
         else
-            img.src = this.rightPic
+            this.img.src = this.rightPic
+        ctx.drawImage(this.img, this.x, this.y, this.height, this.width);
+
     }
 
 
