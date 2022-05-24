@@ -27,7 +27,7 @@ document.addEventListener("keydown", function (event) {
     if (event.key === "ArrowRight")
         player.moveRight();
     if (event.key === "ArrowUp")
-        player2.moveUp();
+        player.moveUp();
     if (event.key === "a")
         player2.moveLeft();
     if (event.key === "d")
