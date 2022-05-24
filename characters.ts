@@ -41,6 +41,7 @@ class Character extends Actor{
         //this.x += 1 // for now
         this.x += this.xVelocity
         this.y += this.yVelocity
+        // code for hitting another player here - figure out a way to identify enemy w/o hitting oneself
     }
 
     moveLeft() : void {
@@ -55,63 +56,10 @@ class Character extends Actor{
         this.yVelocity -= 1
     }
 
+    hit(sprite : Character) : boolean {
+        if (Math.sqrt( (this.x - player.x) ** 2 + (this.y - player.y) ** 2 ) < 20 ) {
+            return true // instead of 20, we need to find another way to make the hitbox
+        }
+        return false
+    }
 }
-
-// class FallingCircle extends Actor {
-
-//     color : string;
-
-//     //override Actor's constructor
-//     constructor(x : number, y : number, color : string) {
-//         super(x, y ); // calls the Actor's constructor
-//         this.color = color;
-//     }
-
-//     draw() : void {
-//         ctx.fillStyle = this.color;
-//         ctx.beginPath();
-//         ctx.arc(this.x, this.y, 20, 0 , Math.PI * 2);
-//         ctx.closePath();
-//         ctx.fill();
-//     }
-
-//     update() : void {
-//         this.y += 5;
-
-//         if (this.y > canvas.height + 50){
-//             actorList.removeActor(this);
-//         }
-//     }
-// }
-
-// class Rock extends FallingCircle {
-//     //overrides FallingCircle constructor
-//     constructor(x : number, y : number){
-//         super(x, y, "gray");
-//     }
-
-//     //override
-//     update() {
-//         super.update()
-//         //check collision with player
-//         if ( Math.sqrt( (this.x - player.x) ** 2 + (this.y - player.y) ** 2 ) < 20){
-//             actorList.removeActor(this);
-//             window.alert("You died from a rock!");
-//         }
-//     }
-// }
-
-// class Fruit extends FallingCircle {
-//     constructor(x : number, y : number){
-//         super(x, y, "red");
-//     }
-
-//     //override
-//     update() {
-//         super.update()
-//         //check collision with player
-//         if ( Math.sqrt( (this.x - player.x) ** 2 + (this.y - player.y) ** 2 ) < 20){
-//             actorList.removeActor(this);
-//         }
-//     }
-// }

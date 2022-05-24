@@ -4,7 +4,7 @@ const canvas = document.querySelector("canvas") as HTMLCanvasElement;
 const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
 const FRAME_LENGTH = 30
-const actorList = new ActorList();
+const characterList = new CharacterList();
 
 //Draw ~ 30 times a second
 let drawIntervalId : number | undefined = window.setInterval(draw, FRAME_LENGTH);
@@ -13,14 +13,14 @@ function draw(){
     // Clear the stage!
     ctx.clearRect(0,0,canvas.width, canvas.height); // somehow get this to clear the images
 
-    // Re-draw all the actors!
-    for (const actor of actorList.actors){
-        actor.draw();
+    // Re-draw all the characters!
+    for (const character of characterList.characters){
+        character.draw();
     }
 
-    //Update all actors
-    for (const actor of actorList.actors){
-        actor.update();
+    //Update all characters
+    for (const character of characterList.characters){
+        character.update();
     }
 }
 

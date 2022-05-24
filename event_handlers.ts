@@ -8,15 +8,15 @@ window.addEventListener("load", function() {
     //Handle when the whole page finishes loading
     //Use this to "set up" the initial state of things;
 
-    //Often, this includes populating the actorList.
+    //Often, this includes populating the characterList.
     // A sample:
-    actorList.addActor(player);
-    actorList.addActor(player2)
+    characterList.addCharacter(player);
+    characterList.addCharacter(player2)
 
     // let rock : Rock = new Rock(canvas.width / 2, 10);
-    // actorList.addActor(rock);
+    // characterList.addCharacter(rock);
     // let fruit : Fruit = new Fruit(canvas.width / 2, 100);
-    // actorList.addActor(fruit);
+    // characterList.addCharacter(fruit);
 
 })
 
@@ -67,12 +67,12 @@ document.addEventListener("keyup", function(event:KeyboardEvent){
 // let keysStatus = {leftKeyDown: false, rightKeyDown: false};
 
 // setInterval( function() {
-//     actorList.addActor( new Fruit( Math.random() * canvas.width, -50));
+//     characterList.addCharacter( new Fruit( Math.random() * canvas.width, -50));
 // }, 2000)
 
 // setTimeout(createRock, Math.random() * 2000 + 1000);
 
 // function createRock(){
-//     actorList.addActor( new Rock( Math.random() * canvas.width, -50));
+//     characterList.addCharacter( new Rock( Math.random() * canvas.width, -50));
 //     setTimeout(createRock, Math.random() * 2000 + 1000);
 // }

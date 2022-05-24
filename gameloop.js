@@ -1,22 +1,21 @@
+"use strict";
 // Main "boilerplate" code for a game loop. Unlikely to need to change this.
-var canvas = document.querySelector("canvas");
-var ctx = canvas.getContext("2d");
-var FRAME_LENGTH = 30;
-var actorList = new ActorList();
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
+const FRAME_LENGTH = 30;
+const characterList = new CharacterList();
 //Draw ~ 30 times a second
-var drawIntervalId = window.setInterval(draw, FRAME_LENGTH);
+let drawIntervalId = window.setInterval(draw, FRAME_LENGTH);
 function draw() {
     // Clear the stage!
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // Re-draw all the actors!
-    for (var _i = 0, _a = actorList.actors; _i < _a.length; _i++) {
-        var actor = _a[_i];
-        actor.draw();
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // somehow get this to clear the images
+    // Re-draw all the characters!
+    for (const character of characterList.characters) {
+        character.draw();
     }
-    //Update all actors
-    for (var _b = 0, _c = actorList.actors; _b < _c.length; _b++) {
-        var actor = _c[_b];
-        actor.update();
+    //Update all characters
+    for (const character of characterList.characters) {
+        character.update();
     }
 }
 // Functions to control (pause/continue) the game loop.
