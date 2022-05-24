@@ -1,8 +1,8 @@
 "use strict";
 // Some standard user-input events. Define handling of these events here.
 // test character, gotta change all the methods below.
-let player = new Character(canvas.width / 2, canvas.height - 100, 'imgs/kombatchar.png', 'imgs/kombatchar.png', true);
-let player2 = new Character(canvas.width / 4, canvas.height - 100, 'imgs/kombatchar.png', 'imgs/kombatchar.png', true);
+let player = new Character(canvas.width / 2, canvas.height - 100, 'imgs/kombatchar.png', 'imgs/character2.png', true);
+let player2 = new Character(canvas.width / 4, canvas.height - 100, 'imgs/character2.png', 'imgs/kombatchar.png', true);
 window.addEventListener("load", function () {
     //Handle when the whole page finishes loading
     //Use this to "set up" the initial state of things;

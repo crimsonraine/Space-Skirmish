@@ -2,7 +2,7 @@
 
 // test character, gotta change all the methods below.
 let player : Character = new Character(canvas.width / 2, canvas.height - 100, 'imgs/kombatchar.png', 'imgs/kombatchar.png', true);
-let player2 : Character = new Character(canvas.width / 4, canvas.height - 100, 'imgs/kombatchar.png', 'imgs/kombatchar.png', true);
+let player2 : Character = new Character(canvas.width / 4, canvas.height - 100, 'imgs/character2.png', 'imgs/character2.png', true);
 
 window.addEventListener("load", function() {
     //Handle when the whole page finishes loading
