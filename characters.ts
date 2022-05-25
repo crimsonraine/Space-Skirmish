@@ -54,8 +54,7 @@ class Character extends Actor{
         this.y += this.yVelocity
         // code for hitting another player here - figure out a way to identify enemy w/o hitting oneself
 
-        // this doesn't totally work because it stops them at the borders but the numbers aren't right
-        // I kinda just put this here for now so the characters won't float away from the screen
+        // this code no longer works since I fixed the movement issue
         // if someone can fix this, then yay!!
         if (this.x <= 10 || this.x >= canvas.width){
             this.xVelocity = - this.xVelocity
@@ -63,6 +62,14 @@ class Character extends Actor{
         if (this.y <= 10 || this.y >= canvas.height){
             this.yVelocity = - this.yVelocity
         }
+        // if (this.x >= canvas.width){
+        //     //this.xVelocity = - this.xVelocity
+        //     //this.x = 0
+        // }
+        // if (this.y >= canvas.height){
+        //     //this.yVelocity = - this.yVelocity
+        //     //this.x = 100
+        // }
     }
 
     moveLeft() : void {
