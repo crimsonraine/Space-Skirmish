@@ -10,6 +10,7 @@ class Character extends Actor{
     height : number;
     width : number;
     img : HTMLImageElement;
+    hp : number;
 
 
     constructor(x : number, y : number, picturel : string, picturer : string, goingLeft : boolean) {
@@ -17,11 +18,12 @@ class Character extends Actor{
         this.leftPic = picturel;
         this.rightPic = picturer;
         this.goingLeft = goingLeft;
-        this.xVelocity = 0
-        this.yVelocity = 0
-        this.height = 100
-        this.width = 100
+        this.xVelocity = 0;
+        this.yVelocity = 0;
+        this.height = 100;
+        this.width = 100;
         this.img = new Image();
+        this.hp = 100;
     }
 
     draw() : void {
@@ -77,4 +79,14 @@ class Character extends Actor{
         }
         return false
     }
+
+    damaged(sprite : Character) : void {
+        this.hp -= 10
+        if (this.hp <= 0) {
+            pauseDrawing()
+            // winning/losing screen
+        }
+    }
 }
+
+// perhaps add classes here that are children of Character with different stats

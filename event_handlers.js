@@ -4,24 +4,16 @@
 let player = new Character(canvas.width / 2, canvas.height - 100, 'imgs/kombatchar.png', 'imgs/kombatchar.png', true);
 let player2 = new Character(canvas.width / 4, canvas.height - 100, 'imgs/character2.png', 'imgs/character2.png', true);
 window.addEventListener("load", function () {
-    //Handle when the whole page finishes loading
-    //Use this to "set up" the initial state of things;
-    //Often, this includes populating the characterList.
-    // A sample:
     characterList.addCharacter(player);
     characterList.addCharacter(player2);
-    // let rock : Rock = new Rock(canvas.width / 2, 10);
-    // characterList.addCharacter(rock);
-    // let fruit : Fruit = new Fruit(canvas.width / 2, 100);
-    // characterList.addCharacter(fruit);
 });
 canvas.addEventListener("click", function (event) {
-    //Handle click events
     //Get position of click on canvas: event.offsetX, event.offsetY
 });
 document.addEventListener("keydown", function (event) {
     //Handle keydown events
     //Get the key that was pressed: event.key
+    // Okay, so this is messed up. We should probably revert it to what we had before.
     switch (event.key) {
         case "ArrowLeft":
             player.moveLeft();
