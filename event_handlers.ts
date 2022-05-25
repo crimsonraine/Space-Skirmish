@@ -16,28 +16,27 @@ canvas.addEventListener("click", function(event: MouseEvent) {
 document.addEventListener("keydown", function(event: KeyboardEvent){
     //Handle keydown events
     //Get the key that was pressed: event.key
-    // Okay, so this is messed up. We should probably revert it to what we had before.
-    switch (event.key) {
-        case "ArrowLeft" :
-            player.moveLeft();
-        case "ArrowRight" :
-            player.moveRight();
-        case "ArrowUp" :
-            player.moveUp();
-        case "a" :
-            player2.moveLeft();
-        case "d" :
-            player2.moveRight();
-        case "w" :
-            player2.moveUp();
-    }
-        
+    if (event.key === "ArrowLeft")
+        player.moveLeft();
+    if (event.key === "ArrowRight")
+        player.moveRight();
+    if (event.key === "ArrowUp")
+        player.moveUp();
+    if (event.key === "a")
+        player2.moveLeft();
+    if (event.key === "d")
+        player2.moveRight();
+    if (event.key === "w")
+        player2.moveUp();
 });
 
 document.addEventListener("keyup", function(event:KeyboardEvent){
     //Handle keydown events
     //Get the key that was released: event.key
-
+    
+    // if (event.key === "keyup") {
+    //     player.stopMove();
+    // }
 });
 
 

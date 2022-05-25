@@ -13,11 +13,15 @@ function draw(time) {
     for (const character of characterList.characters) {
         character.draw();
     }
-    //Update all characters
+    // Update all characters
     for (const character of characterList.characters) {
         character.update();
     }
     drawAnimationFrameID = requestAnimationFrame(draw);
+    // Stats
+    for (let char = 0; char <= Character.length; char++) {
+        ctx.strokeRect(400 / char + 50, 50, 100, 10); // would need to tinker with the numbers
+    }
 }
 let drawAnimationFrameID = requestAnimationFrame(draw);
 // Functions to control (pause/continue) the game loop.

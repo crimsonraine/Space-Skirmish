@@ -11,6 +11,8 @@ class Character extends Actor{
     width : number;
     img : HTMLImageElement;
     hp : number;
+    gravity : number;
+    velocity : number;
 
 
     constructor(x : number, y : number, picturel : string, picturer : string, goingLeft : boolean) {
@@ -24,6 +26,8 @@ class Character extends Actor{
         this.width = 100;
         this.img = new Image();
         this.hp = 100;
+        this.gravity = 0.5;
+        this.velocity = 0;
     }
 
     draw() : void {
@@ -62,15 +66,26 @@ class Character extends Actor{
     }
 
     moveLeft() : void {
-        this.xVelocity -= 1
+        //this.xVelocity -= 1
+        this.x -= 5
     }
 
     moveRight() : void {
-        this.xVelocity += 1
+        //this.xVelocity += 1
+        this.x += 5
     }
 
     moveUp() : void {
-        this.yVelocity -= 1
+        this.y -= 5
+        //this.gravitySpeed += this.gravity;
+        //this.x -= this.xVelocity;
+        //this.y -= this.yVelocity + this.gravitySpeed;
+        //this.velocity += this.gravity
+        //this.y -= this.velocity
+    }
+
+    stopMove() : void {
+        //this.xVelocity += 5
     }
 
     hit(sprite : Character) : boolean {
