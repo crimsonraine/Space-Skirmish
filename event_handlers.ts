@@ -28,6 +28,7 @@ canvas.addEventListener("click", function(event: MouseEvent) {
 document.addEventListener("keydown", function(event: KeyboardEvent){
     //Handle keydown events
     //Get the key that was pressed: event.key
+    // Okay, so this is messed up. We should probably revert it to what we had before.
     switch (event.key) {
         case "ArrowLeft" :
             player.moveLeft();
