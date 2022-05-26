@@ -73,6 +73,9 @@ class Character extends Actor{
         if (this.y <= 10 || this.y >= canvas.height){
             this.yVelocity = - this.yVelocity
         }
+        // if (this.x + this.width < 0) this.x = this.width;
+        // if (this.x > this.width) this.x = -this.width;
+        //if (this.velocity < -9) this.velocity = -9;
     }
 
     moveLeft() : void {
@@ -94,9 +97,9 @@ class Character extends Actor{
         //this.y -= this.velocity
     }
 
-    stopMove() : void {
-        //this.xVelocity += 5
-    }
+    // stopMove() : void {
+    //     //this.xVelocity += 5
+    // }
 
     hit(sprite : Character) : boolean {
         if (Math.sqrt( (this.x - player.x) ** 2 + (this.y - player.y) ** 2 ) < 20 ) {
