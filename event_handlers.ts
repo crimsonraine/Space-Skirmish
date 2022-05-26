@@ -13,25 +13,36 @@ canvas.addEventListener("click", function(event: MouseEvent) {
     //Get position of click on canvas: event.offsetX, event.offsetY
 });
 
-document.addEventListener("keydown", function(event: KeyboardEvent){
+document.addEventListener("keydown", function (event) {
     //Handle keydown events
     //Get the key that was pressed: event.key
-    if (event.key === "ArrowLeft") player.moveLeft();
-    if (event.key === "ArrowRight") player.moveRight();
-    if (event.key === "ArrowUp") player.moveUp();
-
-    if (event.key === "a") player2.moveLeft();
-    if (event.key === "d") player2.moveRight();
-    if (event.key === "w") player2.moveUp();
+    if (event.key === "ArrowLeft")
+        player.leftPress = true
+    if (event.key === "ArrowRight")
+        player.rightPress = true
+    if (event.key === "ArrowUp")
+        player.moveUp();
+    if (event.key === "a")
+        player2.leftPress = true
+    if (event.key === "d")
+        player2.rightPress = true
+    if (event.key === "w")
+        player2.moveUp();
 });
-
-document.addEventListener("keyup", function(event:KeyboardEvent){
+document.addEventListener("keyup", function (event) {
     //Handle keydown events
     //Get the key that was released: event.key
-    
     // if (event.key === "keyup") {
     //     player.stopMove();
     // }
+    if (event.key === "ArrowLeft")
+        player.leftPress = false
+    if (event.key === "ArrowRight")
+        player.rightPress = false
+    if (event.key === "a")
+        player2.leftPress = false
+    if (event.key === "d")
+        player2.rightPress = false
 });
 
 

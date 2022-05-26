@@ -13,6 +13,8 @@ class Character extends Actor{
     hp : number;
     gravity : number;
     velocity : number;
+    leftPress : boolean;
+    rightPress : boolean;
 
 
     constructor(x : number, y : number, picturel : string, picturer : string, goingLeft : boolean) {
@@ -28,6 +30,8 @@ class Character extends Actor{
         this.hp = 100;
         this.gravity = 5;
         this.velocity = 0;
+        this.leftPress = false;
+        this.rightPress = false;
     }
 
     draw() : void {
@@ -50,7 +54,12 @@ class Character extends Actor{
         //this.x += 1 // for now
         this.x += this.xVelocity;
         this.y += this.yVelocity;
-        this.y += this.gravity;
+
+        if (this.leftPress)
+            this.moveLeft()
+        if (this.rightPress)
+            this.moveRight()
+        // this.y += this.gravity;
         // eventually the greater the height, faster the fall
         // which isn't true but it's fun
         
@@ -107,6 +116,7 @@ class Character extends Actor{
             // winning/losing screen
         }
     }
+
 }
 
 // perhaps add classes here that are children of Character with different stats
