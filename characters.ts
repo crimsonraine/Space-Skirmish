@@ -26,7 +26,7 @@ class Character extends Actor{
         this.width = 100;
         this.img = new Image();
         this.hp = 100;
-        this.gravity = 0.5;
+        this.gravity = 5;
         this.velocity = 0;
     }
 
@@ -39,10 +39,8 @@ class Character extends Actor{
         // img.onload = () => {
         //     ctx.drawImage(img, this.x, this.y, img.width, img.height);
         // }
-        if (this.goingLeft) 
-            this.img.src = this.leftPic
-        else
-            this.img.src = this.rightPic
+        if (this.goingLeft) this.img.src = this.leftPic;
+        else this.img.src = this.rightPic;
         ctx.drawImage(this.img, this.x, this.y, this.height, this.width);
 
     }
@@ -50,8 +48,12 @@ class Character extends Actor{
 
     update() : void { // for movement
         //this.x += 1 // for now
-        this.x += this.xVelocity
-        this.y += this.yVelocity
+        this.x += this.xVelocity;
+        this.y += this.yVelocity;
+        this.y += this.gravity;
+        // eventually the greater the height, faster the fall
+        // which isn't true but it's fun
+        
         // code for hitting another player here - figure out a way to identify enemy w/o hitting oneself
 
         // this code no longer works since I fixed the movement issue
@@ -62,18 +64,10 @@ class Character extends Actor{
         if (this.y <= 10 || this.y >= canvas.height){
             this.yVelocity = - this.yVelocity
         }
-        // if (this.x >= canvas.width){
-        //     //this.xVelocity = - this.xVelocity
-        //     //this.x = 0
-        // }
-        // if (this.y >= canvas.height){
-        //     //this.yVelocity = - this.yVelocity
-        //     //this.x = 100
-        // }
     }
 
     moveLeft() : void {
-        //this.xVelocity -= 1
+        // this.xVelocity -= 1
         this.x -= 5
     }
 
@@ -100,6 +94,10 @@ class Character extends Actor{
             return true // instead of 20, we need to find another way to make the hitbox
         }
         return false
+    }
+
+    atk(sprite: Character) : void {
+        // pass for now
     }
 
     damaged(sprite : Character) : void {
