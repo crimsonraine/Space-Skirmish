@@ -9,6 +9,8 @@ const characterList = new CharacterList();
 function draw(time) {
     // Clear the stage!
     ctx.clearRect(0, 0, canvas.width, canvas.height); // somehow get this to clear the images
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 7 / 8 * canvas.height, canvas.width, 1 / 8 * canvas.height); // we can change this later to an image
     // Re-draw all the characters!
     for (const character of characterList.characters) {
         character.draw();

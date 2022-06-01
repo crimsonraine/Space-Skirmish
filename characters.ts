@@ -24,8 +24,8 @@ class Character extends Actor{
         this.goingLeft = goingLeft;
         this.xVelocity = 0;
         this.yVelocity = 0;
-        this.height = 100;
-        this.width = 100;
+        this.height = 150;
+        this.width = 150;
         this.img = new Image();
         this.hp = 100;
         this.gravity = 5;
@@ -35,14 +35,6 @@ class Character extends Actor{
     }
 
     draw() : void {
-        // all this to get an image on there - haven't tested yet, feel free to change
-        // honestly Christina and Mika if you have anything better please add it here
-        // took this off stack overflow
-        //oc.width = img.width * 0.75;
-        //oc.height = img.height * 0.75;
-        // img.onload = () => {
-        //     ctx.drawImage(img, this.x, this.y, img.width, img.height);
-        // }
         if (this.goingLeft) this.img.src = this.leftPic;
         else this.img.src = this.rightPic;
         ctx.drawImage(this.img, this.x, this.y, this.height, this.width);
@@ -50,18 +42,27 @@ class Character extends Actor{
     }
 
 
-    update() : void { // for movement
-        //this.x += 1 // for now
-        this.x += this.xVelocity;
-        this.y += this.yVelocity;
+    update() : void { // for movemen5
+        this.gravity += 0.1
 
+        this.x += this.xVelocity;
+        this.y += this.gravity + this.yVelocity;
+
+        // hit the floor
+        if (this.y >= 7/8 * canvas.height - this.height)
+            this.y = 7/8 * canvas.height - this.height;
+            this.stopMove();
+
+        if (this.y <= -this.height) this.y = -this.height;
+
+        // screenwrap so we don't lose the sprite
+        if (this.x + this.width < 0) this.x = canvas.width;
+        if (this.x > canvas.width) this.x = -this.width;
+        
         if (this.leftPress)
             this.moveLeft()
         if (this.rightPress)
             this.moveRight()
-        // this.y += this.gravity;
-        // eventually the greater the height, faster the fall
-        // which isn't true but it's fun
         
         // code for hitting another player here - figure out a way to identify enemy w/o hitting oneself
 
@@ -79,27 +80,29 @@ class Character extends Actor{
     }
 
     moveLeft() : void {
-        // this.xVelocity -= 1
+        this.xVelocity -= 2
         this.x -= 5
     }
 
     moveRight() : void {
-        //this.xVelocity += 1
+        this.xVelocity += 2
         this.x += 5
     }
 
     moveUp() : void {
-        this.y -= 5
-        //this.gravitySpeed += this.gravity;
-        //this.x -= this.xVelocity;
-        //this.y -= this.yVelocity + this.gravitySpeed;
-        //this.velocity += this.gravity
-        //this.y -= this.velocity
+        this.y -= 100
+        this.gravity = 0;
     }
 
+<<<<<<< HEAD
     // stopMove() : void {
     //     //this.xVelocity += 5
     // }
+=======
+    stopMove() : void {
+        this.xVelocity = 0;
+    }
+>>>>>>> 3fc977aa2aa2737b7e32d94203b4e5b9534efe7d
 
     hit(sprite : Character) : boolean {
         if (Math.sqrt( (this.x - player.x) ** 2 + (this.y - player.y) ** 2 ) < 20 ) {

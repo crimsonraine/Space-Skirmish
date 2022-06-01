@@ -3,7 +3,7 @@
 const canvas = document.querySelector("canvas") as HTMLCanvasElement;
 const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
-const FRAME_LENGTH = 30
+const FRAME_LENGTH = 30;
 const characterList = new CharacterList();
 
 // Draw ~ 30 times a second
@@ -13,6 +13,9 @@ function draw(time :number){
     // Clear the stage!
     ctx.clearRect(0,0,canvas.width, canvas.height); // somehow get this to clear the images
 
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 7/8 * canvas.height, canvas.width, 1/8 * canvas.height); // we can change this later to an image
+    
     // Re-draw all the characters!
     for (const character of characterList.characters){
         character.draw();
