@@ -90,19 +90,13 @@ class Character extends Actor{
     }
 
     moveUp() : void {
-        this.y -= 100
+        this.yVelocity -= 5
         this.gravity = 0;
     }
 
-<<<<<<< HEAD
-    // stopMove() : void {
-    //     //this.xVelocity += 5
-    // }
-=======
     stopMove() : void {
         this.xVelocity = 0;
     }
->>>>>>> 3fc977aa2aa2737b7e32d94203b4e5b9534efe7d
 
     hit(sprite : Character) : boolean {
         if (Math.sqrt( (this.x - player.x) ** 2 + (this.y - player.y) ** 2 ) < 20 ) {
@@ -126,3 +120,4 @@ class Character extends Actor{
 }
 
 // perhaps add classes here that are children of Character with different stats
+
