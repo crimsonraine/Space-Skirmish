@@ -13,18 +13,27 @@ canvas.addEventListener("click", function (event) {
 document.addEventListener("keydown", function (event) {
     //Handle keydown events
     //Get the key that was pressed: event.key
-    if (event.key === "ArrowLeft")
-        player.leftPress = true;
-    if (event.key === "ArrowRight")
-        player.rightPress = true;
-    if (event.key === "ArrowUp")
-        player.moveUp();
-    if (event.key === "a")
-        player2.leftPress = true;
-    if (event.key === "d")
-        player2.rightPress = true;
-    if (event.key === "w")
-        player2.moveUp();
+    switch(event.key) {
+        case "ArrowLeft":
+            player.leftPress = true;
+            break;
+        case "ArrowRight":
+            player.rightPress = true;
+            break;
+        case "ArrowUp":
+            player.moveUp();
+            break;
+        case "a":
+            player2.leftPress = true;
+            break;
+        case "d":
+            player2.rightPress = true;
+            break;
+        case "w":
+            player2.moveUp();
+            break;
+
+    }
 });
 document.addEventListener("keyup", function (event) {
     //Handle keydown events
@@ -32,14 +41,21 @@ document.addEventListener("keyup", function (event) {
     // if (event.key === "keyup") {
     //     player.stopMove();
     // }
-    if (event.key === "ArrowLeft")
-        player.leftPress = false;
-    if (event.key === "ArrowRight")
-        player.rightPress = false;
-    if (event.key === "a")
-        player2.leftPress = false;
-    if (event.key === "d")
-        player2.rightPress = false;
+   switch(event.key) {
+        case "ArrowLeft":
+            player.leftPress = false;
+            break;
+        case "ArrowRight":
+            player.rightPress = false;
+            break;
+        case "a":
+            player2.leftPress = false;
+            break;
+        case "d":
+            player2.rightPress = false;
+            break;
+
+    }
 });
 // Add more event handlers:
 // Examples include:
