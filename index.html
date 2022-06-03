@@ -10,25 +10,29 @@
             border: 1px solid black;
             background-color: tan;
         }
+        .center {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+            width: 50%;
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
     </style>
 </head>
-<body>
+<body class = "center">
     <h1>Mortal Kombat!</h1>
     <canvas height="500" width="1000" style = "background: url('./imgs/Krossroads.jpg')"></canvas>
-    <!-- <div style="position: relative;">
-        <div>
-            player health-->
-            <!-- <div style="background-color: yellow; height: 30px; width: 100px"></div>
-            timer-->
-            <!-- <div></div> -->
-            <!--emeny health-->
-            <!-- <div></div> -->
-        <!-- </div>
-        <canva></canva>
-    </div> -->
     <div>
         <button id="pause">Pause</button>
         <button id="continue">Continue</button>    
+    </div>
+    <div style="position: relative;">player health</div>
+           <div style="background-color: yellow; height: 30px; width: 100px">timer</div>
+            <div>enemy health</div>
+        </div>
     </div>
     <script src="character_list.js"></script>
     <script src="gameloop.js"></script>
