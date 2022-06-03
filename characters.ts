@@ -15,6 +15,7 @@ class Character extends Actor{
     velocity : number;
     leftPress : boolean;
     rightPress : boolean;
+    upPress : boolean;
 
 
     constructor(x : number, y : number, picturel : string, picturer : string, goingLeft : boolean) {
@@ -32,6 +33,7 @@ class Character extends Actor{
         this.velocity = 0;
         this.leftPress = false;
         this.rightPress = false;
+        this.upPress = false;
     }
 
     draw() : void {
@@ -63,6 +65,8 @@ class Character extends Actor{
             this.moveLeft()
         if (this.rightPress)
             this.moveRight()
+        if (this.upPress)
+            this.moveUp()
         
         // code for hitting another player here - figure out a way to identify enemy w/o hitting oneself
 
