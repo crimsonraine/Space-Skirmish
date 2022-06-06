@@ -121,7 +121,11 @@ class Character extends Actor{
         }
     }
 
+    //health = document.querySelector("enemyHealth") as 
 }
 
 // perhaps add classes here that are children of Character with different stats
+
+// ctx.fillStyle = 'red';
+// ctx.fillRect(5, 5 * canvas.height, canvas.width, 5 * canvas.height); // we can change this later to an image
 

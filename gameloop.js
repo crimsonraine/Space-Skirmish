@@ -11,6 +11,10 @@ function draw(time) {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // somehow get this to clear the images
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 7 / 8 * canvas.height, canvas.width, 1 / 8 * canvas.height); // we can change this later to an image
+    // ctx.fillStyle = 'red';
+    // // let player_health =
+    // ctx.fillRect(0, 1/17 * canvas.height, canvas.width, 1/15 * canvas.height); // we can change this later to an image
+    // //let player2_health = 
     // Re-draw all the characters!
     for (const character of characterList.characters) {
         character.draw();
