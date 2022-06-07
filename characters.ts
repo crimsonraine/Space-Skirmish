@@ -16,6 +16,7 @@ class Character extends Actor{
     leftPress : boolean;
     rightPress : boolean;
     upPress : boolean;
+    hitbox : number[];
 
 
     constructor(x : number, y : number, picturel : string, picturer : string, goingLeft : boolean) {
@@ -34,6 +35,7 @@ class Character extends Actor{
         this.leftPress = false;
         this.rightPress = false;
         this.upPress = false;
+        this.hitbox = [150,150]
     }
 
     draw() : void {
@@ -103,7 +105,8 @@ class Character extends Actor{
     }
 
     hit(sprite : Character) : boolean {
-        if (Math.sqrt( (this.x - player.x) ** 2 + (this.y - player.y) ** 2 ) < 20 ) {
+        if (Math.sqrt( (this.x - player.x) ** 2 + (this.y - player.y) ** 2 ) < 75 ) {
+            sprite.hp -= 20; // probably going to depend on the move type; call this when ever a key is pressed
             return true // instead of 20, we need to find another way to make the hitbox
         }
         return false

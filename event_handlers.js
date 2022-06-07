@@ -13,33 +13,48 @@ canvas.addEventListener("click", function (event) {
 document.addEventListener("keydown", function (event) {
     //Handle keydown events
     //Get the key that was pressed: event.key
-    if (event.key === "ArrowLeft")
-        player.leftPress = true;
-    if (event.key === "ArrowRight")
-        player.rightPress = true;
-    if (event.key === "ArrowUp")
-        player.moveUp();
-    if (event.key === "a")
-        player2.leftPress = true;
-    if (event.key === "d")
-        player2.rightPress = true;
-    if (event.key === "w")
-        player2.moveUp();
+    switch (event.key) {
+        case 'j':
+            player.leftPress = true;
+            break;
+        case 'l':
+            player.rightPress = true;
+            break;
+        case 'i':
+            player.moveUp();
+            break;
+        case 'c':
+            player.atk(player2);
+            break;
+        case 'a':
+            player2.leftPress = true;
+            break;
+        case 'd':
+            player2.rightPress = true;
+            break;
+        case 'w':
+            player2.moveUp();
+            break;
+        case 'n':
+            player2.atk(player);
+            break;
+    }
 });
 document.addEventListener("keyup", function (event) {
-    //Handle keydown events
-    //Get the key that was released: event.key
-    // if (event.key === "keyup") {
-    //     player.stopMove();
-    // }
-    if (event.key === "ArrowLeft")
-        player.leftPress = false;
-    if (event.key === "ArrowRight")
-        player.rightPress = false;
-    if (event.key === "a")
-        player2.leftPress = false;
-    if (event.key === "d")
-        player2.rightPress = false;
+    switch (event.key) {
+        case 'j':
+            player.leftPress = false;
+            break;
+        case 'l':
+            player.rightPress = false;
+            break;
+        case 'a':
+            player2.leftPress = false;
+            break;
+        case 'd':
+            player2.rightPress = false;
+            break;
+    }
 });
 // Add more event handlers:
 // Examples include:
@@ -60,3 +75,5 @@ document.addEventListener("keyup", function (event) {
 //     characterList.addCharacter( new Rock( Math.random() * canvas.width, -50));
 //     setTimeout(createRock, Math.random() * 2000 + 1000);
 // }
+// end of game code
+//if (enemy.health <= 0 || player.health <= 0) {
