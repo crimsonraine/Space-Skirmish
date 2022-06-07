@@ -1,42 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas Game Template</title>
-    <link href="/styles/TitleScreen.css" type="text/css" rel="stylesheet">
-
     <style>
-        /* canvas {
-            border: 1px solid black;
-            background-color: rgb(224, 133, 13);
-        } */
-        .center {
-            display: block;
-            margin-right: auto;
-            width: 50%;
-            text-align: center;
-        }
-        h1 {
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
-        * {
+      * {
         box-sizing: border-box;
         font-family: 'Press Start 2P', cursive;
-        }
+      }
     </style>
-</head>
-<body class = "center">
-    <h1>Mortal Kombat!</h1>
-    <div>
-        <button id="pause">Pause</button>
-        <button id="continue">Continue</button>    
-    </div>
-
- <!-- I started doing stuff for the health bar but it did not end well :( -->
-
-            <!-- red container div -->
+  </head>
+  <body>
+    <!-- red container div -->
     <div style="position: relative; display: inline-block">
       <!-- smaller red container div -->
       <div
@@ -111,26 +82,10 @@
               right: 0;
               bottom: 0;
               left: 0;
-              width: 100%
             "
           ></div>
         </div>
         <div></div>
       </div>
-      <canvas height="500" width="1000" style = "background: url('./imgs/Krossroads.jpg')"></canvas>
+      <canvas></canvas>
 
-
-        
-    <script src="character_list.js"></script>
-    <script src="gameloop.js"></script>
-    <script src="actors.js"></script>
-    <script src="characters.js"></script>
-    <script src="event_handlers.js"></script>
-    <!-- <script src="TitleScreen.js"></script> -->
-    <!-- <script src="KeyboardMenu.js"></script>
-    <script src="Overworld.js"></script>
-    <script src="init.js"></script> -->
-    <!-- <script src="classes.js" ></script>
-    <script src="index.js"></script> -->
-</body>
-</html>
