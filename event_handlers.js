@@ -61,4 +61,4 @@ document.addEventListener("keyup", function (event) {
 //     setTimeout(createRock, Math.random() * 2000 + 1000);
 // }
 // end of game code
-//if (enemy.health <= 0 || player.health <= 0) {
+//if (player2.health <= 0 || player.health <= 0) {

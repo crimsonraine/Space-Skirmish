@@ -53,3 +53,10 @@ function continueDrawing(){
 
 (document.querySelector("#pause") as HTMLElement).addEventListener("click",pauseDrawing);
 (document.querySelector("#continue") as HTMLElement).addEventListener("click",continueDrawing);
+//(document.querySelector("#redCont") as HTMLElement).addEventListener("click",continueDrawing);
+
+// function healthBar() {
+//     gsap.to('#playerHealth', {
+//         width: player.health + '%'
+//       })
+// }

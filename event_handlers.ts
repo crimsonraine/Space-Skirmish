@@ -74,4 +74,4 @@ document.addEventListener("keyup", function (event) {
 // }
 
 // end of game code
-//if (enemy.health <= 0 || player.health <= 0) {
+//if (player2.health <= 0 || player.health <= 0) {
