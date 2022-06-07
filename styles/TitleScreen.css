@@ -1,0 +1,6 @@
+.TitleScreen_logo {
+    display: block;
+    margin: 0 auto;
+    width: 128px;
+    image-rendering: pixelated;
+  }
