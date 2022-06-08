@@ -16,6 +16,11 @@ function draw(time :number){
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 7/8 * canvas.height, canvas.width, 1/8 * canvas.height); // we can change this later to an image
     
+    // ctx.fillStyle = 'red';
+    // // let player_health =
+    // ctx.fillRect(0, 1/17 * canvas.height, canvas.width, 1/15 * canvas.height); // we can change this later to an image
+    // //let player2_health = 
+
     // Re-draw all the characters!
     for (const character of characterList.characters){
         character.draw();
@@ -48,3 +53,10 @@ function continueDrawing(){
 
 (document.querySelector("#pause") as HTMLElement).addEventListener("click",pauseDrawing);
 (document.querySelector("#continue") as HTMLElement).addEventListener("click",continueDrawing);
+//(document.querySelector("#redCont") as HTMLElement).addEventListener("click",continueDrawing);
+
+// function healthBar() {
+//     gsap.to('#playerHealth', {
+//         width: player.health + '%'
+//       })
+// }

@@ -76,3 +76,5 @@ document.addEventListener("keyup", function (event) {
 //     characterList.addCharacter( new Rock( Math.random() * canvas.width, -50));
 //     setTimeout(createRock, Math.random() * 2000 + 1000);
 // }
+// end of game code
+//if (player2.health <= 0 || player.health <= 0) {
