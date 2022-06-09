@@ -5,8 +5,9 @@ let player : Character = new Character(canvas.width / 2, canvas.height - 100, 'i
 let player2 : Character = new Character(canvas.width / 4, canvas.height - 100, 'imgs/character2.png', 'imgs/character2.png', true);
 
 window.addEventListener("load", function() {
-    characterList.addCharacter(player);
-    characterList.addCharacter(player2)
+    ctx.style = "background: url('./imgs/Krossroads.jpg')"
+    // characterList.addCharacter(player);
+    // characterList.addCharacter(player2)
 })
 
 canvas.addEventListener("click", function(event: MouseEvent) {

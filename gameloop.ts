@@ -6,6 +6,8 @@ const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 const FRAME_LENGTH = 30;
 const characterList = new CharacterList();
 
+
+
 // Draw ~ 30 times a second
 // let drawIntervalId : number | undefined = window.setInterval(draw, FRAME_LENGTH);
 

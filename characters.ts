@@ -1,3 +1,5 @@
+const GRAVITY = 0.7;
+
 class Character extends Actor{
     
     // x : number;
@@ -11,7 +13,6 @@ class Character extends Actor{
     width : number;
     img : HTMLImageElement;
     hp : number;
-    gravity : number;
     velocity : number;
     leftPress : boolean;
     rightPress : boolean;
@@ -30,7 +31,6 @@ class Character extends Actor{
         this.width = 150;
         this.img = new Image();
         this.hp = 100;
-        this.gravity = 5;
         this.velocity = 0;
         this.leftPress = false;
         this.rightPress = false;
@@ -47,10 +47,9 @@ class Character extends Actor{
 
 
     update() : void { // for movemen5
-        this.gravity += 0.1
 
         this.x += this.xVelocity;
-        this.y += this.gravity + this.yVelocity;
+        this.y += GRAVITY + this.yVelocity;
 
         // hit the floor
         if (this.y >= 7/8 * canvas.height - this.height)
@@ -86,17 +85,17 @@ class Character extends Actor{
     }
 
     moveLeft() : void {
-        this.xVelocity -= 2
-        this.x -= 5
+        this.xVelocity -= 2;
+        this.x -= 5;
     }
 
     moveRight() : void {
-        this.xVelocity += 2
-        this.x += 5
+        this.xVelocity += 2;
+        this.x += 5;
     }
 
     moveUp() : void {
-        this.yVelocity -= 5
+        this.yVelocity -= 5;
         this.gravity = 0;
     }
 
@@ -119,7 +118,7 @@ class Character extends Actor{
     damaged(sprite : Character) : void {
         this.hp -= 10
         if (this.hp <= 0) {
-            pauseDrawing()
+            pauseDrawing();
             // winning/losing screen
         }
     }
