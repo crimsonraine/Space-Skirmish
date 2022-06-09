@@ -36,14 +36,21 @@ document.addEventListener("keyup", function (event) {
     // if (event.key === "keyup") {
     //     player.stopMove();
     // }
-    if (event.key === "ArrowLeft")
-        player.leftPress = false;
-    if (event.key === "ArrowRight")
-        player.rightPress = false;
-    if (event.key === "a")
-        player2.leftPress = false;
-    if (event.key === "d")
-        player2.rightPress = false;
+   switch(event.key) {
+        case "ArrowLeft":
+            player.leftPress = false;
+            break;
+        case "ArrowRight":
+            player.rightPress = false;
+            break;
+        case "a":
+            player2.leftPress = false;
+            break;
+        case "d":
+            player2.rightPress = false;
+            break;
+
+    }
 });
 // Add more event handlers:
 // Examples include:
