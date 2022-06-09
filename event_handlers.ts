@@ -20,14 +20,18 @@ document.addEventListener("keydown", function (event) {
         player.leftPress = true
     if (event.key === "ArrowRight")
         player.rightPress = true
-    if (event.key === "ArrowUp")
-        player.moveUp();
+    if (event.key === "ArrowUp"){
+        if (!event.repeat)
+            player.moveUp();
+    }
     if (event.key === "a")
         player2.leftPress = true
     if (event.key === "d")
         player2.rightPress = true
-    if (event.key === "w")
-        player2.moveUp();
+    if (event.key === "w"){
+        if (!event.repeat)
+            player2.moveUp();
+    }
 });
 document.addEventListener("keyup", function (event) {
     //Handle keydown events
@@ -74,4 +78,4 @@ document.addEventListener("keyup", function (event) {
 // }
 
 // end of game code
-//if (enemy.health <= 0 || player.health <= 0) {
+//if (player2.health <= 0 || player.health <= 0) {
