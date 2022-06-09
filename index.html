@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canvas Game Template</title>
     <link href="/styles/styles.css" type="text/css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+
+
 
     <style>
         .center {
@@ -58,15 +61,18 @@
     <!-- imports -->
     <script src="classes.js"></script>
     <script src="index.js"></script>
-    <!-- <script src="character_list.js"></script>
+    <script src="character_list.js"></script>
     <script src="gameloop.js"></script>
     <script src="actors.js"></script>
     <script src="characters.js"></script>
-    <script src="event_handlers.js"></script> -->
+    <script src="event_handlers.js"></script>
     <!-- <script src="TitleScreen.js"></script> -->
     <!-- <script src="KeyboardMenu.js"></script>
     <script src="Overworld.js"></script>
     <script src="init.js"></script> -->
-
+    <div id='start-screen' class='screen' style='display:block'>
+      <button onclick='startGame()'>Start Game</button>
+    </div>
+    <canvas id="canvas" style='display:none'></canvas>
 </body>
 </html>

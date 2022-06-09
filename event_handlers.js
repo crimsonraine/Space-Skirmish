@@ -29,6 +29,10 @@ document.addEventListener("keydown", function (event) {
         if (!event.repeat)
             player2.moveUp();
     }
+    if (event.key === "p") {
+        player.stopMove();
+        player2.stopMove();
+    }
 });
 document.addEventListener("keyup", function (event) {
     //Handle keydown events
@@ -36,21 +40,14 @@ document.addEventListener("keyup", function (event) {
     // if (event.key === "keyup") {
     //     player.stopMove();
     // }
-   switch(event.key) {
-        case "ArrowLeft":
-            player.leftPress = false;
-            break;
-        case "ArrowRight":
-            player.rightPress = false;
-            break;
-        case "a":
-            player2.leftPress = false;
-            break;
-        case "d":
-            player2.rightPress = false;
-            break;
-
-    }
+    if (event.key === "ArrowLeft")
+        player.leftPress = false;
+    if (event.key === "ArrowRight")
+        player.rightPress = false;
+    if (event.key === "a")
+        player2.leftPress = false;
+    if (event.key === "d")
+        player2.rightPress = false;
 });
 // Add more event handlers:
 // Examples include:
