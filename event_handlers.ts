@@ -32,6 +32,10 @@ document.addEventListener("keydown", function (event) {
         if (!event.repeat)
             player2.moveUp();
     }
+    // if (event.key === "p"){
+    //     player.stopMove()
+    //     player2.stopMove()
+    // }
 });
 document.addEventListener("keyup", function (event) {
     //Handle keydown events
