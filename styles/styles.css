@@ -6,7 +6,7 @@
   padding: 20px;
 }
 
-#playerHealth {
+.playerHealth3 {
   position: relative;
   width: 100%;
   display: flex;
@@ -37,7 +37,7 @@
   border: 4px solid white;
 }
 
-#enemyHealth {
+.enemyHealth3 {
   position: relative;
   width: 100%;
   border-top: 4px solid white;
