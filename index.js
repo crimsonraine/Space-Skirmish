@@ -7,9 +7,16 @@ canvas.height = 576
 
 c.fillRect(0,0, canvas.width, canvas.height)
 const gravity = 0.7
-const xspeed = 10
+const xxspeed = 10
+const background = new Sprite({
+    position: {
+        x: 0,
+        y: 0
+    },
+    imageSrc: './imgs/Krossroads.jpg'
+})
 
-const player = new Sprite({
+const player = new Fighter({
     position: {
         x: 0,
         y: 0
@@ -24,7 +31,7 @@ const player = new Sprite({
     }
 })
 
-const enemy = new Sprite({
+const enemy = new Fighter({
     position: {
         x: 400,
         y: 100
@@ -64,27 +71,81 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
         rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height
     )
 }
+function attackBoxChange({ player1, player2}) {
+    if (player1.position.y < player2.position.y) {
+        player1.attackBox.offset.y = -200
+        player2.attackBox.offset.y = 200
+    } else if (player1.position.y > player2.position.y) {
+        player1.attackBox.offset.y = 200
+        player2.attackBox.offset.y = -200
+    } else if (player1.position.x > player2.position.x) {
+        player1.attackBox.offset.x = -50
+        player2.attackBox.offset.x = 0
+    } else {
+        player1.attackBox.offset.x = 0
+        player2.attackBox.offset.x = -50
+    }
+}
 
 function animate() {
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
+    // current problem::: for some reason punch changes -x position while jumpimg
+    if (player.position.y < enemy.position.y) {
+        player.attackBox.offset.x = 50
+        enemy.attackBox.offset.y = -50
+        //find better way to do this
+        player.attackBox.width = 50
+        player.attackBox.height = 100
+        enemy.attackBox.width = 50
+        enemy.attackBox.height = 100
+    } else if (player.position.y > enemy.position.y) {
+        player.attackBox.offset.y = -50
+        enemy.attackBox.offset.x = 50
+        //find better way to do this
+        player.attackBox.width = 50
+        player.attackBox.height = 100
+        enemy.attackBox.width = 50
+        enemy.attackBox.height = 100
+    } else if (player.position.x > enemy.position.x) {
+        player.attackBox.offset.x = -50
+        enemy.attackBox.offset.x = 0
+        player.attackBox.offset.y = 0
+        enemy.attackBox.offset.y = 0
+        //find better way to do this
+        player.attackBox.width = 100
+        player.attackBox.height = 50
+        enemy.attackBox.width = 100
+        enemy.attackBox.height = 50
+    } else {
+        player.attackBox.offset.x = 0
+        enemy.attackBox.offset.x = -50
+        player.attackBox.offset.y = 0
+        enemy.attackBox.offset.y = 0
+        //find better way to do this
+        player.attackBox.width = 100
+        player.attackBox.height = 50
+        enemy.attackBox.width = 100
+        enemy.attackBox.height = 50
+    }
+    background.update()
     player.update()
     enemy.update()
 
     player.velocity.x = 0
     enemy.velocity.x = 0
     // player movement
-    if (keys.a.pressed && player.lastKey === 'a') {
-        player.velocity.x = -xspeed
-    } else if (keys.d.pressed && player.lastKey === 'd') {
-        player.velocity.x = xspeed
+    if (keys.a.pressed && player.lastKey === 'a' && player.position.x > 0) {
+        player.velocity.x = -player.xspeed
+    } else if (keys.d.pressed && player.lastKey === 'd' && player.position.x < canvas.width - player.width) {
+        player.velocity.x = player.xspeed
     }
     // enemy movement
-    if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') {
-        enemy.velocity.x = -xspeed
-    } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') {
-        enemy.velocity.x = xspeed
+    if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft' && enemy.position.x > 0) {
+        enemy.velocity.x = -enemy.xspeed
+    } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight' && enemy.position.x < canvas.width - enemy.width) {
+        enemy.velocity.x = enemy.xspeed
     }
 
     //detect collision yas
@@ -119,7 +180,11 @@ window.addEventListener('keydown', (event) => {
             player.lastKey = 'a'
             break
         case 'w':
-            player.velocity.y = -20
+            if (player.jump == 0)
+                player.velocity.y = -15
+            else if (player.jump == 1)
+                player.velocity.y = -12
+            player.jump++
             break
         case ' ':
             player.attack()
@@ -134,7 +199,11 @@ window.addEventListener('keydown', (event) => {
             enemy.lastKey = 'ArrowLeft'
             break
         case 'ArrowUp':
-            enemy.velocity.y = -20
+            if (enemy.jump == 0)
+                enemy.velocity.y = -15
+            else if (enemy.jump == 1)
+                enemy.velocity.y = -12
+            enemy.jump++
             break
         case 'ArrowDown':
             enemy.attack()
