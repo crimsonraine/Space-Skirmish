@@ -93,8 +93,9 @@ function animate() {
         rectangle2: enemy
     }) && player.isAttacking) {
             console.log("yas")
+            enemy.takeHit()
             player.isAttacking = false // immediately sets is attacking to false again to allow for only one hit at a time
-            document.querySelector('#enemyHealth').style.width = '20%'
+            document.querySelector('#enemyHealth').style.width = enemy.health + '%'
     }
 
     if (rectangularCollision({
@@ -102,7 +103,9 @@ function animate() {
         rectangle2: player
     }) && enemy.isAttacking) {
             console.log("enemy attack yas")
+            player.takeHit()
             enemy.isAttacking = false // immediately sets is attacking to false again to allow for only one hit at a time
+            document.querySelector('#playerHealth').style.width = player.health + '%'
     }
 }
 

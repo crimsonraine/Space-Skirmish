@@ -54,7 +54,7 @@ class Sprite {
         this.health -= 20
 
         if (this.health <= 0) {
-            
+            console.log("health gone u dead lol")
         }
     }
 }
