@@ -87,6 +87,8 @@ function attackBoxChange({ player1, player2}) {
     }
 }
 
+decreaseTimer()
+
 function animate() {
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
@@ -167,6 +169,10 @@ function animate() {
             player.takeHit()
             enemy.isAttacking = false // immediately sets is attacking to false again to allow for only one hit at a time
             document.querySelector('#playerHealth').style.width = player.health + '%'
+    }
+
+    if (enemy.health <= 0 || player.health <= 0) {
+        determineWinner({ player, enemy, timerId })
     }
 }
 
