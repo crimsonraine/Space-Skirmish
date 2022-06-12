@@ -1,101 +1,143 @@
 const HEIGHT = 150
 const WIDTH = 50
 class Sprite {
-    constructor({position, imageSrc, scale = 1, framesMax=1}) {
-        this.position = position
-        this.width = 50
-        this.height = 150
-        this.image = new Image()
-        this.image.src = imageSrc
-        this.scale = scale
-        this.framesMax = framesMax
-        this.framesCurrent = 0
-        this.framesElapsed = 0
-        this.framesHold = 5
+    constructor({
+      position,
+      imageSrc,
+      scale = 1,
+      framesMax = 1,
+      offset = { x: 0, x2:0, y: 0 }
+    }) {
+      this.position = position
+      this.width = 50
+      this.height = 150
+      this.image = new Image()
+      this.image.src = imageSrc
+      this.scale = scale
+      this.framesMax = framesMax
+      this.framesCurrent = 0
+      this.framesElapsed = 0
+      this.framesHold = 5
+      this.offset = offset
     }
     draw() {
         c.drawImage(
           this.image,
-          this.framesCurrent * (this.image.width / this.framesMax), // x crop coordinate
+          this.framesCurrent * (this.image.width / this.framesMax),
           0,
           this.image.width / this.framesMax,
-          this.image.height, // these 4 are for the crop. you take the full image and divide it by the amount of different frames
-          this.position.x,
-          this.position.y,
+          this.image.height,
+          this.position.x - this.offset.x,
+          this.position.y - this.offset.y,
           (this.image.width / this.framesMax) * this.scale,
           this.image.height * this.scale
         )
       }
 
+      animateFrames() {
+        this.framesElapsed++
+    
+        if (this.framesElapsed % this.framesHold === 0) {
+          if (this.framesCurrent < this.framesMax - 1) {
+            this.framesCurrent++
+          } else {
+            this.framesCurrent = 0
+          }
+        }
+      }
+
     update() {
         this.draw()
-        this.framesElapsed++
-
-        if (this.framesElapsed % this.framesHold === 0) {
-            if (this.framesCurrent < this.framesMax - 1) {
-                this.framesCurrent++
-            } else {
-                this.framesCurrent = 0
-            }
-        }
+        this.animateFrames()
     }
 }
 
-class Fighter {
-    constructor({position, velocity, color = 'red', offset}) {
-        this.position = position
-        this.velocity = velocity
-        this.width = 50
-        this.height = 150
-        this.lastKey
-        this.attackBox = {
-            position: {
-                x: this.position.x,
-                y: this.position.y
-            },
-            width: 100,
-            height: 50,
-            offset: offset
-        }
-        this.color = color
-        this.isAttacking
-        this.jump
-        this.health = 100
-        this.xspeed = 10
+class Fighter extends Sprite {
+    constructor({
+      position,
+      velocity,
+      color = 'red',
+      imageSrc,
+      scale = 1,
+      framesMax = 1,
+      offset = { x: 0, x2:0, y: 0 },
+      sprites,
+      attackBox = { offset: {}, width: undefined, height: undefined }
+    }) {
+      super({
+        position,
+        imageSrc,
+        scale,
+        framesMax,
+        offset
+      })
+  
+      this.velocity = velocity
+      this.width = 50
+      this.height = 150
+      this.lastKey
+      this.attackBox = {
+        position: {
+          x: this.position.x,
+          y: this.position.y
+        },
+        offset: attackBox.offset,
+        width: attackBox.width,
+        height: attackBox.height
+      }
+      this.color = color
+      this.isAttacking
+      this.health = 100
+      this.framesCurrent = 0
+      this.framesElapsed = 0
+      this.framesHold = 5
+      this.xspeed = 10
+      this.sprites = sprites
+      this.dead = false
+  
+      for (const sprite in this.sprites) {
+        sprites[sprite].image = new Image()
+        sprites[sprite].image.src = sprites[sprite].imageSrc
+      }
     }
-    draw() {
-        c.fillStyle = this.color
-        c.fillRect(this.position.x, this.position.y, this.width, this.height)
+    // draw() {
+    //     c.fillStyle = this.color
+    //     c.fillRect(this.position.x, this.position.y, this.width, this.height)
 
-        // attack box yas
-        if (this.isAttacking) {
-            c.fillStyle = 'green'
-            c.fillRect(this.attackBox.position.x, 
-                this.attackBox.position.y, 
-                this.attackBox.width, 
-                this.attackBox.height)    
-            }
-        }
+    //     // attack box yas
+    //     if (this.isAttacking) {
+    //         c.fillStyle = 'green'
+    //         c.fillRect(this.attackBox.position.x, 
+    //             this.attackBox.position.y, 
+    //             this.attackBox.width, 
+    //             this.attackBox.height)    
+    //         }
+    //     }
+
     update() {
         this.draw()
+        this.animateFrames()
+        
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x // the reason for  the offset is to change the player's attackboxes' locations and stuff based on the player
         this.attackBox.position.y = this.position.y + this.attackBox.offset.y
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
 
-        if(this.position.y + HEIGHT >= canvas.height) {
+        //if (this.position.y + this.height + this.velocity.y >= 300) {
+        if(this.position.y + this.height >= canvas.height) {
             // makes sure player doesn't sink due to gravity
-            this.position.y = canvas.height - HEIGHT
+            this.position.y = canvas.height - this.height
+            //this.position.y = 200
             this.velocity.y = 0
             this.jump = 0
             this.xspeed = 10
-            this.width = 50
-            this.height = 150
+            // this.width = 50
+            // this.height = 150
         } else {
             this.velocity.y += gravity
             this.xspeed = 5
-            this.width = 150
-            this.height = 50
+            // this.width = 150
+            // this.height = 50
         }
     }
     attack() {

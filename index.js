@@ -35,9 +35,22 @@ const player = new Fighter({
         x: 0,
         y: 0
     },
+    imageSrc: './imgs/samuraiMack/Idle.png',
+    framesMax: 8,
+    scale: 2.5,
     offset: {
-        x: 0,
-        y: 0
+        x: 187,
+        x2: 45,
+        y: 155
+    },
+    sprites: {
+        idle: {
+            imageSrc: './imgs/samuraiMack/Idle.png',
+            framesMax: 8
+        },
+        run: {
+
+        }
     }
 })
 
@@ -128,7 +141,6 @@ function animate() {
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
-    // current problem::: for some reason punch changes -x position while jumpimg
     if (player.position.y < enemy.position.y) {
         player.attackBox.offset.x = 50
         enemy.attackBox.offset.y = -50
@@ -171,20 +183,20 @@ function animate() {
     background.update()
     shop.update()
     player.update()
-    enemy.update()
+    //enemy.update()
 
     player.velocity.x = 0
     enemy.velocity.x = 0
     // player movement
     if (keys.a.pressed && player.lastKey === 'a' && player.position.x > 0) {
         player.velocity.x = -player.xspeed
-    } else if (keys.d.pressed && player.lastKey === 'd' && player.position.x < canvas.width - player.width) {
+    } else if (keys.d.pressed && player.lastKey === 'd' && player.position.x + player.offset.x2< canvas.width - player.width) {
         player.velocity.x = player.xspeed
     }
     // enemy movement
     if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft' && enemy.position.x > 0) {
         enemy.velocity.x = -enemy.xspeed
-    } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight' && enemy.position.x < canvas.width - enemy.width) {
+    } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight' && enemy.position.x + enemy.offset.x < canvas.width - enemy.width) {
         enemy.velocity.x = enemy.xspeed
     }
 
