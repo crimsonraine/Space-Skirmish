@@ -16,6 +16,16 @@ const background = new Sprite({
     imageSrc: './imgs/Krossroads.jpg'
 })
 
+const shop = new Sprite({
+    position: {
+        x: 600,
+        y: 224
+    },
+    imageSrc: './imgs/shop.png',
+    scale: 2.75,
+    framesMax: 6
+})
+
 const player = new Fighter({
     position: {
         x: 0,
@@ -87,6 +97,31 @@ function attackBoxChange({ player1, player2}) {
     }
 }
 
+function determineWinner({ player, enemy, timerId}) {
+    clearTimeout(timerId)
+    document.querySelector('#displayText').style.display='flex'
+    if (player.health === enemy.health) {
+        document.querySelector('#displayText').innerHTML = 'Tie'
+    } else if (player.health > enemy.health) {
+        document.querySelector('#displayText').innerHTML = 'Player 1 Wins'
+    } else if (player.health < enemy.health) {
+        document.querySelector('#displayText').innerHTML = 'Player 2 Wins'
+    }
+}
+
+let timer = 60
+let timerId
+function decreaseTimer() {
+    if (timer > 0) {
+        timerId = setTimeout(decreaseTimer, 1000)
+        timer--
+        document.querySelector('#timer').innerHTML = timer
+    }
+
+    if (timer === 0) {
+        determineWinner({player,enemy, timerId})
+    }
+}
 decreaseTimer()
 
 function animate() {
@@ -132,6 +167,7 @@ function animate() {
         enemy.attackBox.height = 50
     }
     background.update()
+    shop.update()
     player.update()
     enemy.update()
 
@@ -171,6 +207,7 @@ function animate() {
             document.querySelector('#playerHealth').style.width = player.health + '%'
     }
 
+    // end game based on health
     if (enemy.health <= 0 || player.health <= 0) {
         determineWinner({ player, enemy, timerId })
     }
