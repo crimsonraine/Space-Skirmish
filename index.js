@@ -132,6 +132,7 @@ function animate() {
     if (player.position.y < enemy.position.y) {
         player.attackBox.offset.x = 50
         enemy.attackBox.offset.y = -50
+        enemy.attackBox.offset.x = 0
         //find better way to do this
         player.attackBox.width = 50
         player.attackBox.height = 100
@@ -139,6 +140,7 @@ function animate() {
         enemy.attackBox.height = 100
     } else if (player.position.y > enemy.position.y) {
         player.attackBox.offset.y = -50
+        player.attackBox.offset.x = 0
         enemy.attackBox.offset.x = 50
         //find better way to do this
         player.attackBox.width = 50
