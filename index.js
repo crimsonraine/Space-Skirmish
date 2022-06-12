@@ -13,7 +13,7 @@ const background = new Sprite({
         x: 0,
         y: 0
     },
-    imageSrc: './imgs/Krossroads.jpg'
+    imageSrc: './imgs2/background_galaxy.png'
 })
 
 const player = new Fighter({
