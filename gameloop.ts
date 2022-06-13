@@ -1,15 +1,8 @@
-// Main "boilerplate" code for a game loop. Unlikely to need to change this.
-
 const canvas = document.querySelector("canvas") as HTMLCanvasElement;
 const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
 const FRAME_LENGTH = 30;
 const characterList = new CharacterList();
-
-
-
-// Draw ~ 30 times a second
-// let drawIntervalId : number | undefined = window.setInterval(draw, FRAME_LENGTH);
 
 function draw(time :number){
     // Clear the stage!
@@ -17,11 +10,6 @@ function draw(time :number){
 
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 7/8 * canvas.height, canvas.width, 1/8 * canvas.height); // we can change this later to an image
-    
-    // ctx.fillStyle = 'red';
-    // // let player_health =
-    // ctx.fillRect(0, 1/17 * canvas.height, canvas.width, 1/15 * canvas.height); // we can change this later to an image
-    // //let player2_health = 
 
     // Re-draw all the characters!
     for (const character of characterList.characters){
@@ -39,11 +27,3 @@ function draw(time :number){
         ctx.strokeRect(400 / char + 50, 50, 100, 10) // would need to tinker with the numbers
     }
 }
-
-//(document.querySelector("#redCont") as HTMLElement).addEventListener("click",continueDrawing);
-
-// function healthBar() {
-//     gsap.to('#playerHealth', {
-//         width: player.health + '%'
-//       })
-// }
