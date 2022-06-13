@@ -1,5 +1,33 @@
 const GRAVITY = 0.7;
+class Actor {
+    
+    //List all properties:
+    x : number;
+    y : number;
 
+    constructor(x : number, y : number) {
+        //set up properties
+        this.x = x;
+        this.y = y;
+    }
+
+    /**
+     * Draw the actor on the canvas.
+     */
+    draw() : void {
+        // Use ctx to draw. A sample (drawing a small circle):
+       
+    }
+
+    /**
+     * Update this actor for the next frame.
+     */
+    update() : void {
+        // Update properties or other Actors in the actorList.
+        
+    }
+
+}
 class Character extends Actor{
     
     // x : number;
@@ -115,7 +143,7 @@ class Character extends Actor{
     }
 
     hit(sprite : Character) : boolean {
-        if (Math.sqrt( (this.x - player.x) ** 2 + (this.y - player.y) ** 2 ) < 75 ) {
+        if (Math.sqrt( (this.x - sprite.x) ** 2 + (this.y - sprite.y) ** 2 ) < 75 ) {
             sprite.hp -= 20; // probably going to depend on the move type; call this when ever a key is pressed
             return true // instead of 20, we need to find another way to make the hitbox
         }
