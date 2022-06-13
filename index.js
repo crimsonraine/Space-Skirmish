@@ -21,7 +21,7 @@ const shop = new Sprite({
         x: 600,
         y: 143
     },
-    imageSrc: './imgs/shop.png',
+    imageSrc: './imgs2/shop.png',
     scale: 2.75,
     framesMax: 6
 })
@@ -35,8 +35,8 @@ const player = new Fighter({
         x: 0,
         y: 0
     },
-    imageSrc: './Knight_Char/Idle.png',
-    framesMax: 8,
+    imageSrc: './imgs2/Knight_Char/Idle.png',
+    framesMax: 11,
     scale: 2.5,
     offset: {
         x: 187,
@@ -45,60 +45,64 @@ const player = new Fighter({
     },
     sprites: {
         idle: {
-            imageSrc: './Knight_Char/Idle.png',
-            framesMax: 8
+            imageSrc: './imgs2/Knight_Char/Idle.png',
+            framesMax: 11
         },
         run: {
-            imageSrc: './Knight_Char/Run.png',
+            imageSrc: './imgs2/Knight_Char/Run.png',
             framesMax: 8
         },
         jump: {
-            imageSrc: './Knight_Char/Jump.png',
-            framesMax: 2
+            imageSrc: './imgs2/Knight_Char/Jump.png',
+            framesMax: 3
         }, 
         fall: {
-            imageSrc: './Knight_Char/Fall.png',
-            framesMax: 2
+            imageSrc: './imgs2/Knight_Char/Fall.png',
+            framesMax: 3
         }, 
         attack1: {
-            imageSrc: './Knight_Char/Attack1.png',
-            framesMax: 6
+            imageSrc: './imgs2/Knight_Char/Attack1.png',
+            framesMax: 7
+        },
+        attack2: {
+            imageSrc: './imgs2/Knight_Char/Attack2.png',
+            framesMax: 7
         },
         takeHit: {
-            imageSrc: './Knight_Char/Take Hit.png',
+            imageSrc: './imgs2/Knight_Char/Take Hit.png',
             framesMax: 4
         }, 
         death: {
-            imageSrc: './Knight_Char/Death.png',
-            framesMax: 6
+            imageSrc: './imgs2/Knight_Char/Death.png',
+            framesMax: 11
         },
         idleFlip: {
-            imageSrc: './Knight_Char/Idle.png',
-            framesMax: 8
+            imageSrc: './imgs2/Knight_Char/Idle.png',
+            framesMax: 11
         },
         runFlip: {
-            imageSrc: './Knight_Char/Run.png',
+            imageSrc: './imgs2/Knight_Char/Run.png',
             framesMax: 8
         },
         jumpFlip: {
-            imageSrc: './Knight_Char/Jump.png',
-            framesMax: 2
+            imageSrc: './imgs2/Knight_Char/Jump.png',
+            framesMax: 3
         }, 
         fallFlip: {
-            imageSrc: './Knight_Char/Fall.png',
-            framesMax: 2
+            imageSrc: './imgs2/Knight_Char/Fall.png',
+            framesMax: 3
         }, 
         attack1Flip: {
-            imageSrc: './Knight_Char/Attack1.png',
-            framesMax: 6
+            imageSrc: './imgs2/Knight_Char/Attack1.png',
+            framesMax: 7
         },
         takeHitFlip: {
-            imageSrc: './Knight_Char/Take Hit.png',
+            imageSrc: './imgs2/Knight_Char/Take Hit.png',
             framesMax: 4
         }, 
         deathFlip: {
-            imageSrc: './Knight_Char/Death.png',
-            framesMax: 6
+            imageSrc: './imgs2/Knight_Char/Death.png',
+            framesMax: 11
         }
     },
     attackBox: {
@@ -121,8 +125,8 @@ const enemy = new Fighter({
         y: 0
     },
     color: 'blue',
-    imageSrc: './Fantasy_Fighter_Char/Idle.png',
-    framesMax: 4,
+    imageSrc: './imgs2/Fantasy_Fighter_Char/Idle.png',
+    framesMax: 10,
     scale: 2.5,
     offset: {
         x: 187,
@@ -131,59 +135,67 @@ const enemy = new Fighter({
     },
     sprites: {
         idle: {
-            imageSrc: './Fantasy_Fighter_Char/Idle.png',
-            framesMax: 4
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Idle.png',
+            framesMax: 10
         },
         run: {
-            imageSrc: './Fantasy_Fighter_Char/Run.png',
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Run.png',
             framesMax: 8
         },
         jump: {
-            imageSrc: './Fantasy_Fighter_Char/Jump.png',
-            framesMax: 2
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Jump.png',
+            framesMax: 3
         }, 
         fall: {
-            imageSrc: './Fantasy_Fighter_Char/Fall.png',
-            framesMax: 2
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Fall.png',
+            framesMax: 3
         }, 
         attack1: {
-            imageSrc: './Fantasy_Fighter_Char/Attack1.png',
-            framesMax: 4
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Attack1.png',
+            framesMax: 7
+        }, 
+        attack2: {
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Attack2.png',
+            framesMax: 8
         }, 
         takeHit: {
-            imageSrc: './Fantasy_Fighter_Char/Take hit.png',
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Take hit.png',
             framesMax: 3
         }, 
         death: {
-            imageSrc: './Fantasy_Fighter_Char/Death.png',
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Death.png',
             framesMax: 7
         },
         idleFlip: {
-            imageSrc: './Fantasy_Fighter_Char/Idle.png',
-            framesMax: 4
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Idle.png',
+            framesMax: 10
         },
         runFlip: {
-            imageSrc: './Fantasy_Fighter_Char/Run.png',
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Run.png',
             framesMax: 8
         },
         jumpFlip: {
-            imageSrc: './Fantasy_Fighter_Char/Jump.png',
-            framesMax: 2
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Jump.png',
+            framesMax: 3
         }, 
         fallFlip: {
-            imageSrc: './Fantasy_Fighter_Char/Fall.png',
-            framesMax: 2
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Fall.png',
+            framesMax: 3
         }, 
         attack1Flip: {
-            imageSrc: './Fantasy_Fighter_Char/Attack1.png',
-            framesMax: 4
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Attack1.png',
+            framesMax: 7
         }, 
+        attack2Flip: {
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Attack2.png',
+            framesMax: 8
+        },
         takeHitFlip: {
-            imageSrc: './Fantasy_Fighter_Char/Take hit.png',
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Take hit.png',
             framesMax: 3
         }, 
         deathFlip: {
-            imageSrc: './Fantasy_Fighter_Char/Death.png',
+            imageSrc: './imgs2/Fantasy_Fighter_Char/Death.png',
             framesMax: 7
         }
     },
