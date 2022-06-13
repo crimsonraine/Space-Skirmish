@@ -10,6 +10,15 @@ body {
     background-image: url("space.png");
 }
 
+h1{
+    font-size:120px;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    font-family:'Kenney Future', 'Courier New', Courier, monospace;
+    color: bisque;
+}
+
 button {
     border:none;
     appearance:none;
@@ -23,7 +32,9 @@ button {
     color:#932ea7;
     background-color:#1bafdb;
     border: 2px solid #ffffff;
+    margin-bottom: 60px;
 }
+
 button {   transition-duration: 0.4s; }
 button:hover {
     font-size:1.6em;
