@@ -71,6 +71,34 @@ const player = new Fighter({
         death: {
             imageSrc: './imgs/samuraiMack/Death.png',
             framesMax: 6
+        },
+        idleFlip: {
+            imageSrc: './imgs/samuraiMackFlip/Idle.PNG',
+            framesMax: 8
+        },
+        runFlip: {
+            imageSrc: './imgs/samuraiMackFlip/Run.png',
+            framesMax: 8
+        },
+        jumpFlip: {
+            imageSrc: './imgs/samuraiMackFlip/Jump.PNG',
+            framesMax: 2
+        }, 
+        fallFlip: {
+            imageSrc: './imgs/samuraiMackFlip/Fall.PNG',
+            framesMax: 2
+        }, 
+        attack1Flip: {
+            imageSrc: './imgs/samuraiMackFlip/Attack1.PNG',
+            framesMax: 6
+        },
+        takeHitFlip: {
+            imageSrc: './imgs/samuraiMackFlip/Take Hit - white silhouette.PNG',
+            framesMax: 4
+        }, 
+        deathFlip: {
+            imageSrc: './imgs/samuraiMackFlip/Death.PNG',
+            framesMax: 6
         }
     },
     attackBox: {
@@ -93,10 +121,6 @@ const enemy = new Fighter({
         y: 0
     },
     color: 'blue',
-    offset: {
-        x: -50,
-        y: 0
-    },
     imageSrc: './imgs/kenji/Idle.png',
     framesMax: 4,
     scale: 2.5,
@@ -132,6 +156,34 @@ const enemy = new Fighter({
         }, 
         death: {
             imageSrc: './imgs/kenji/Death.png',
+            framesMax: 7
+        },
+        idleFlip: {
+            imageSrc: './imgs/kenjiFlip/Idle.PNG',
+            framesMax: 4
+        },
+        runFlip: {
+            imageSrc: './imgs/kenjiFlip/Run.PNG',
+            framesMax: 8
+        },
+        jumpFlip: {
+            imageSrc: './imgs/kenjiFlip/Jump.PNG',
+            framesMax: 2
+        }, 
+        fallFlip: {
+            imageSrc: './imgs/kenjiFlip/Fall.PNG',
+            framesMax: 2
+        }, 
+        attack1Flip: {
+            imageSrc: './imgs/kenjiFlip/Attack1.PNG',
+            framesMax: 4
+        }, 
+        takeHitFlip: {
+            imageSrc: './imgs/kenjiFlip/Take hit.PNG',
+            framesMax: 3
+        }, 
+        deathFlip: {
+            imageSrc: './imgs/kenjiFlip/Death.PNG',
             framesMax: 7
         }
     },
@@ -220,34 +272,7 @@ function animate() {
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
-    // if (player.position.y < enemy.position.y) {
-    //     player.attackBox.offset.x = 50
-    //     enemy.attackBox.offset.y = -50
-    //     enemy.attackBox.offset.x = 0
-    //     //find better way to do this
-    //     player.attackBox.width = 50
-    //     player.attackBox.height = 100
-    //     enemy.attackBox.width = 50
-    //     enemy.attackBox.height = 100
-    // } else if (player.position.y > enemy.position.y) {
-    //     player.attackBox.offset.y = -50
-    //     player.attackBox.offset.x = 0
-    //     enemy.attackBox.offset.x = 50
-    //     //find better way to do this
-    //     player.attackBox.width = 50
-    //     player.attackBox.height = 100
-    //     enemy.attackBox.width = 50
-    //     enemy.attackBox.height = 100
-    // } else if (player.position.x > enemy.position.x) {
 
-    // to be actually used
-    if (player.position.x > enemy.position.x) {
-        player.attackBox.offset.x = -170
-        enemy.attackBox.offset.x = 100
-    } else {
-        player.attackBox.offset.x = 100
-        enemy.attackBox.offset.x = -170
-    }
     background.update()
     shop.update()
     player.update()
@@ -258,34 +283,57 @@ function animate() {
     // player movement
     if (keys.a.pressed && player.lastKey === 'a' && player.position.x > 0) {
         player.velocity.x = -player.xspeed
-        player.switchSprite('run')
+        player.actionName = 'run'
+        // player.switchSprite('run')
     } else if (keys.d.pressed && player.lastKey === 'd' && player.position.x + player.offset.x2< canvas.width - player.width) {
         player.velocity.x = player.xspeed
-        player.switchSprite('run')
+        player.actionName = 'run'
+        // player.switchSprite('run')
     } else {
-        player.switchSprite('idle')
+        player.actionName = 'idle'
+        // player.switchSprite(player.actionName)
     }
 
     if (player.velocity.y < 0) {
-        player.switchSprite('jump')
+        player.actionName = 'jump'
+        // player.switchSprite(player.actionName)
     } else if (player.velocity.y > 0) {
-        player.switchSprite('fall')
+        player.actionName = 'fall'
+        // player.switchSprite(player.actionName)
     }
     // enemy movement
     if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft' && enemy.position.x > 0) {
         enemy.velocity.x = -enemy.xspeed
-        enemy.switchSprite('run')
+        enemy.actionName = 'run'
+        // enemy.switchSprite(enemy.actionName)
     } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight' && enemy.position.x + enemy.offset.x2 < canvas.width - enemy.width) {
         enemy.velocity.x = enemy.xspeed
-        enemy.switchSprite('run')
+        enemy.actionName = 'run'
+        // enemy.switchSprite('run')
     } else {
-        enemy.switchSprite('idle')
+        enemy.actionName = 'idle'
+        // enemy.switchSprite(enemy.actionName)
     }
 
     if (enemy.velocity.y < 0) {
-        enemy.switchSprite('jump')
+        enemy.actionName = 'jump'
+        // enemy.switchSprite(enemy.actionName)
     } else if (enemy.velocity.y > 0) {
-        enemy.switchSprite('fall')
+        enemy.actionName = 'fall'
+        // enemy.switchSprite(enemy.actionName)
+    }
+
+    // to be actually used
+    if (player.position.x > enemy.position.x) {
+        player.switchSprite2(player.actionName)
+        enemy.switchSprite2(enemy.actionName)
+        player.attackBox.offset.x = -170
+        enemy.attackBox.offset.x = 100
+    } else {
+        player.switchSprite(player.actionName)
+        enemy.switchSprite(enemy.actionName)
+        player.attackBox.offset.x = 100
+        enemy.attackBox.offset.x = -170
     }
 
     //detect collision yas & enemy hit
