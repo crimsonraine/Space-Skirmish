@@ -1,3 +1,7 @@
+body {
+  background-color: #aab1f1;
+}
+
 .redCont {
   position: absolute;
   display: flex;
