@@ -77,31 +77,31 @@ const player = new Fighter({
             framesMax: 11
         },
         idleFlip: {
-            imageSrc: './imgs2/Knight_Char/Idle.png',
+            imageSrc: './imgs2/KnightFlip/Idle.png',
             framesMax: 11
         },
         runFlip: {
-            imageSrc: './imgs2/Knight_Char/Run.png',
+            imageSrc: './imgs2/KnightFlip/Run.png',
             framesMax: 8
         },
         jumpFlip: {
-            imageSrc: './imgs2/Knight_Char/Jump.png',
+            imageSrc: './imgs2/KnightFlip/Jump.png',
             framesMax: 3
         }, 
         fallFlip: {
-            imageSrc: './imgs2/Knight_Char/Fall.png',
+            imageSrc: './imgs2/KnightFlip/Fall.png',
             framesMax: 3
         }, 
         attack1Flip: {
-            imageSrc: './imgs2/Knight_Char/Attack1.png',
+            imageSrc: './imgs2/KnightFlip/Attack1.png',
             framesMax: 7
         },
         takeHitFlip: {
-            imageSrc: './imgs2/Knight_Char/Take Hit.png',
+            imageSrc: './imgs2/KnightFlip/Take Hit.png',
             framesMax: 4
         }, 
         deathFlip: {
-            imageSrc: './imgs2/Knight_Char/Death.png',
+            imageSrc: './imgs2/KnightFlip/Death.png',
             framesMax: 11
         }
     },
@@ -339,13 +339,13 @@ function animate() {
     if (player.position.x > enemy.position.x) {
         player.switchSprite2(player.actionName)
         enemy.switchSprite2(enemy.actionName)
-        // player.attackBox.offset.x = -170
-        // enemy.attackBox.offset.x = 100
+        player.attackBox.offset.x = -20
+        enemy.attackBox.offset.x = -50
     } else {
         player.switchSprite(player.actionName)
         enemy.switchSprite(enemy.actionName)
-        // player.attackBox.offset.x = 100
-        // enemy.attackBox.offset.x = -170
+        player.attackBox.offset.x = 80
+        enemy.attackBox.offset.x = 50
     }
 
     //detect collision yas & enemy hit
