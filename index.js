@@ -394,7 +394,7 @@ window.addEventListener('keydown', (event) => {
                     player.velocity.y = -12
                 player.jump++
                 break
-            case ' ':
+            case 's':
                 player.attack()
                 break
         }
