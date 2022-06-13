@@ -45,59 +45,59 @@ const player = new Fighter({
     },
     sprites: {
         idle: {
-            imageSrc: './imgs/samuraiMack/Idle.png',
+            imageSrc: './Knight_Char/Idle.png',
             framesMax: 8
         },
         run: {
-            imageSrc: './imgs/samuraiMack/Run.png',
+            imageSrc: './Knight_Char/Run.png',
             framesMax: 8
         },
         jump: {
-            imageSrc: './imgs/samuraiMack/Jump.png',
+            imageSrc: './Knight_Char/Jump.png',
             framesMax: 2
         }, 
         fall: {
-            imageSrc: './imgs/samuraiMack/Fall.png',
+            imageSrc: './Knight_Char/Fall.png',
             framesMax: 2
         }, 
         attack1: {
-            imageSrc: './imgs/samuraiMack/Attack1.png',
+            imageSrc: './Knight_Char/Attack1.png',
             framesMax: 6
         },
         takeHit: {
-            imageSrc: './imgs/samuraiMack/Take Hit - white silhouette.png',
+            imageSrc: './Knight_Char/Take Hit.png',
             framesMax: 4
         }, 
         death: {
-            imageSrc: './imgs/samuraiMack/Death.png',
+            imageSrc: './Knight_Char/Death.png',
             framesMax: 6
         },
         idleFlip: {
-            imageSrc: './imgs/samuraiMackFlip/Idle.PNG',
+            imageSrc: './Knight_Char/Idle.png',
             framesMax: 8
         },
         runFlip: {
-            imageSrc: './imgs/samuraiMackFlip/Run.png',
+            imageSrc: './Knight_Char/Run.png',
             framesMax: 8
         },
         jumpFlip: {
-            imageSrc: './imgs/samuraiMackFlip/Jump.PNG',
+            imageSrc: './Knight_Char/Jump.png',
             framesMax: 2
         }, 
         fallFlip: {
-            imageSrc: './imgs/samuraiMackFlip/Fall.PNG',
+            imageSrc: './Knight_Char/Fall.png',
             framesMax: 2
         }, 
         attack1Flip: {
-            imageSrc: './imgs/samuraiMackFlip/Attack1.PNG',
+            imageSrc: './Knight_Char/Attack1.png',
             framesMax: 6
         },
         takeHitFlip: {
-            imageSrc: './imgs/samuraiMackFlip/Take Hit - white silhouette.PNG',
+            imageSrc: './Knight_Char/Take Hit.png',
             framesMax: 4
         }, 
         deathFlip: {
-            imageSrc: './imgs/samuraiMackFlip/Death.PNG',
+            imageSrc: './Knight_Char/Death.png',
             framesMax: 6
         }
     },
