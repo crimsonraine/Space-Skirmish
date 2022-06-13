@@ -1,3 +1,33 @@
+const GRAVITY = 0.7;
+class Actor {
+    
+    //List all properties:
+    x : number;
+    y : number;
+
+    constructor(x : number, y : number) {
+        //set up properties
+        this.x = x;
+        this.y = y;
+    }
+
+    /**
+     * Draw the actor on the canvas.
+     */
+    draw() : void {
+        // Use ctx to draw. A sample (drawing a small circle):
+       
+    }
+
+    /**
+     * Update this actor for the next frame.
+     */
+    update() : void {
+        // Update properties or other Actors in the actorList.
+        
+    }
+
+}
 class Character extends Actor{
     
     // x : number;
@@ -11,11 +41,11 @@ class Character extends Actor{
     width : number;
     img : HTMLImageElement;
     hp : number;
-    gravity : number;
     velocity : number;
     leftPress : boolean;
     rightPress : boolean;
     upPress : boolean;
+    hitbox : number[];
 
 
     constructor(x : number, y : number, picturel : string, picturer : string, goingLeft : boolean) {
@@ -29,11 +59,11 @@ class Character extends Actor{
         this.width = 150;
         this.img = new Image();
         this.hp = 100;
-        this.gravity = 0.5;
         this.velocity = 0;
         this.leftPress = false;
         this.rightPress = false;
         this.upPress = false;
+        this.hitbox = [150,150]
     }
 
     draw() : void {
@@ -45,7 +75,7 @@ class Character extends Actor{
 
 
     update() : void { // for movemen5
-        this.yVelocity += this.gravity
+        this.yVelocity += GRAVITY
 
         this.x += this.xVelocity;
         this.y += this.yVelocity;
@@ -113,7 +143,8 @@ class Character extends Actor{
     }
 
     hit(sprite : Character) : boolean {
-        if (Math.sqrt( (this.x - player.x) ** 2 + (this.y - player.y) ** 2 ) < 20 ) {
+        if (Math.sqrt( (this.x - sprite.x) ** 2 + (this.y - sprite.y) ** 2 ) < 75 ) {
+            sprite.hp -= 20; // probably going to depend on the move type; call this when ever a key is pressed
             return true // instead of 20, we need to find another way to make the hitbox
         }
         return false
@@ -126,16 +157,63 @@ class Character extends Actor{
     damaged(sprite : Character) : void {
         this.hp -= 10
         if (this.hp <= 0) {
-            pauseDrawing()
-            // winning/losing screen
         }
     }
 
     //health = document.querySelector("enemyHealth") as 
 }
 
-// perhaps add classes here that are children of Character with different stats
+class CharacterList {
+    characters : Character[]; // two for now if we don't implement something like a 4 player
 
-// ctx.fillStyle = 'red';
-// ctx.fillRect(5, 5 * canvas.height, canvas.width, 5 * canvas.height); // we can change this later to an image
+    constructor(){
+        this.characters = [];
+    }
 
+    /**
+     * Add character to list (if not already included)
+     * @param character 
+     */
+    addCharacter(character : Character) : void {
+        if (! this.characters.includes(character)){
+            this.characters.push(character);
+        }
+    }
+
+    /**
+     * Add multiple characters to list (if not already included)
+     * @param characters 
+     */
+     addAllCharacters(characters : Character[]) : void {
+        for (const character of characters){
+            this.addCharacter(character);
+        }
+
+    }
+    
+    /**
+     * Use to safely remove an character from the list.
+     * Do NOT use this in a loop over this list's characters - instead, call removeAllCharacters.
+     * @param character 
+     */    
+    removeCharacter( character : Character) : void {
+        let index : number = this.characters.indexOf(character);
+        if (index > -1)
+            this.characters.splice(index, 1);
+    }
+
+    /**
+     * Use to safely remove multiple characters from the list.
+     * If not passed an array of characters to remove, removes all characters in this list.
+     * @param characters
+     */    
+    removeAllCharacters( characters : Character[] = this.characters) : void {
+        if (characters === this.characters){
+            this.characters = [];
+            return;
+        }
+        for (const character of characters){
+            this.removeCharacter(character);
+        }
+    }
+}

@@ -19,7 +19,7 @@ const background = new Sprite({
 const shop = new Sprite({
     position: {
         x: 600,
-        y: 224
+        y: 143
     },
     imageSrc: './imgs/shop.png',
     scale: 2.75,
@@ -41,7 +41,7 @@ const player = new Fighter({
     offset: {
         x: 187,
         x2: 45,
-        y: 155
+        y: 235
     },
     sprites: {
         idle: {
@@ -103,7 +103,7 @@ const enemy = new Fighter({
     offset: {
         x: 187,
         x2: 63,
-        y: 170
+        y: 250
     },
     sprites: {
         idle: {
@@ -401,4 +401,19 @@ window.addEventListener('keyup', (event) => {
         //     break
 
     }
-})
+});
+
+let drawAnimationFrameID = requestAnimationFrame(draw);
+// Functions to control (pause/continue) the game loop.
+
+function pauseDrawing(){
+    if (drawAnimationFrameID !== undefined) cancelAnimationFrame(drawAnimationFrameID);
+    drawAnimationFrameID = undefined;
+}
+
+function continueDrawing(){
+    if (drawAnimationFrameID === undefined) drawAnimationFrameID = requestAnimationFrame(draw);
+}
+
+document.querySelector("#pause").addEventListener("click",pauseDrawing);
+document.querySelector("#continue").addEventListener("click",continueDrawing);
