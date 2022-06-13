@@ -41,7 +41,7 @@ const player = new Fighter({
     offset: {
         x: 187,
         x2: 45,
-        y: 235
+        y: 220
     },
     sprites: {
         idle: {
@@ -131,7 +131,7 @@ const enemy = new Fighter({
     offset: {
         x: 187,
         x2: 63,
-        y: 250
+        y: 185
     },
     sprites: {
         idle: {
