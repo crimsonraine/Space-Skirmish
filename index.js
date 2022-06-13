@@ -35,7 +35,7 @@ const player = new Fighter({
         x: 0,
         y: 0
     },
-    imageSrc: './imgs/samuraiMack/Idle.png',
+    imageSrc: './Knight_Char/Idle.png',
     framesMax: 8,
     scale: 2.5,
     offset: {
@@ -121,7 +121,7 @@ const enemy = new Fighter({
         y: 0
     },
     color: 'blue',
-    imageSrc: './imgs/kenji/Idle.png',
+    imageSrc: './Fantasy_Fighter_Char/Idle.png',
     framesMax: 4,
     scale: 2.5,
     offset: {
@@ -131,59 +131,59 @@ const enemy = new Fighter({
     },
     sprites: {
         idle: {
-            imageSrc: './imgs/kenji/Idle.png',
+            imageSrc: './Fantasy_Fighter_Char/Idle.png',
             framesMax: 4
         },
         run: {
-            imageSrc: './imgs/kenji/Run.png',
+            imageSrc: './Fantasy_Fighter_Char/Run.png',
             framesMax: 8
         },
         jump: {
-            imageSrc: './imgs/kenji/Jump.png',
+            imageSrc: './Fantasy_Fighter_Char/Jump.png',
             framesMax: 2
         }, 
         fall: {
-            imageSrc: './imgs/kenji/Fall.png',
+            imageSrc: './Fantasy_Fighter_Char/Fall.png',
             framesMax: 2
         }, 
         attack1: {
-            imageSrc: './imgs/kenji/Attack1.png',
+            imageSrc: './Fantasy_Fighter_Char/Attack1.png',
             framesMax: 4
         }, 
         takeHit: {
-            imageSrc: './imgs/kenji/Take hit.png',
+            imageSrc: './Fantasy_Fighter_Char/Take hit.png',
             framesMax: 3
         }, 
         death: {
-            imageSrc: './imgs/kenji/Death.png',
+            imageSrc: './Fantasy_Fighter_Char/Death.png',
             framesMax: 7
         },
         idleFlip: {
-            imageSrc: './imgs/kenjiFlip/Idle.PNG',
+            imageSrc: './Fantasy_Fighter_Char/Idle.png',
             framesMax: 4
         },
         runFlip: {
-            imageSrc: './imgs/kenjiFlip/Run.PNG',
+            imageSrc: './Fantasy_Fighter_Char/Run.png',
             framesMax: 8
         },
         jumpFlip: {
-            imageSrc: './imgs/kenjiFlip/Jump.PNG',
+            imageSrc: './Fantasy_Fighter_Char/Jump.png',
             framesMax: 2
         }, 
         fallFlip: {
-            imageSrc: './imgs/kenjiFlip/Fall.PNG',
+            imageSrc: './Fantasy_Fighter_Char/Fall.png',
             framesMax: 2
         }, 
         attack1Flip: {
-            imageSrc: './imgs/kenjiFlip/Attack1.PNG',
+            imageSrc: './Fantasy_Fighter_Char/Attack1.png',
             framesMax: 4
         }, 
         takeHitFlip: {
-            imageSrc: './imgs/kenjiFlip/Take hit.PNG',
+            imageSrc: './Fantasy_Fighter_Char/Take hit.png',
             framesMax: 3
         }, 
         deathFlip: {
-            imageSrc: './imgs/kenjiFlip/Death.PNG',
+            imageSrc: './Fantasy_Fighter_Char/Death.png',
             framesMax: 7
         }
     },
