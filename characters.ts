@@ -31,6 +31,10 @@ class Character extends Actor{
         this.width = 150;
         this.img = new Image();
         this.hp = 100;
+<<<<<<< HEAD
+=======
+        this.gravity = 0.5;
+>>>>>>> efdb5f343f42c5fe1d7f6cb56e7698856e5ef870
         this.velocity = 0;
         this.leftPress = false;
         this.rightPress = false;
@@ -47,20 +51,28 @@ class Character extends Actor{
 
 
     update() : void { // for movemen5
+<<<<<<< HEAD
 
         this.x += this.xVelocity;
         this.y += GRAVITY + this.yVelocity;
+=======
+        this.yVelocity += this.gravity
+
+        this.x += this.xVelocity;
+        this.y += this.yVelocity;
+>>>>>>> efdb5f343f42c5fe1d7f6cb56e7698856e5ef870
 
         // hit the floor
-        if (this.y >= 7/8 * canvas.height - this.height)
+        if (this.y >= 7/8 * canvas.height - this.height){
             this.y = 7/8 * canvas.height - this.height;
             this.stopMove();
+        }
 
         if (this.y <= -this.height) this.y = -this.height;
 
         // screenwrap so we don't lose the sprite
-        if (this.x + this.width < 0) this.x = canvas.width;
-        if (this.x > canvas.width) this.x = -this.width;
+        // if (this.x + this.width < 0) this.x = canvas.width;
+        // if (this.x > canvas.width) this.x = -this.width;
         
         if (this.leftPress)
             this.moveLeft()
@@ -73,11 +85,20 @@ class Character extends Actor{
 
         // this code no longer works since I fixed the movement issue
         // if someone can fix this, then yay!!
-        if (this.x <= 10 || this.x >= canvas.width){
-            this.xVelocity = - this.xVelocity
+        // if (this.x <= 10 || this.x >= canvas.width){
+        //     this.xVelocity = - this.xVelocity
+        // }
+        if (this.y <= 10){
+            this.y = 10
+            this.yVelocity = 0
         }
-        if (this.y <= 10 || this.y >= canvas.height){
-            this.yVelocity = - this.yVelocity
+        if (this.x <= 0){
+            this.x = 0
+            this.xVelocity = 0
+        }
+        if (this.x + this.width >= canvas.width){
+            this.x = canvas.width - this.width
+            this.xVelocity = 0
         }
         // if (this.x + this.width < 0) this.x = this.width;
         // if (this.x > this.width) this.x = -this.width;
@@ -85,6 +106,7 @@ class Character extends Actor{
     }
 
     moveLeft() : void {
+<<<<<<< HEAD
         this.xVelocity -= 2;
         this.x -= 5;
     }
@@ -97,10 +119,24 @@ class Character extends Actor{
     moveUp() : void {
         this.yVelocity -= 5;
         this.gravity = 0;
+=======
+        this.xVelocity = -2
+        this.x -= 5
+    }
+
+    moveRight() : void {
+        this.xVelocity = 2
+        this.x += 5
+    }
+
+    moveUp() : void {
+        this.yVelocity -= 10
+>>>>>>> efdb5f343f42c5fe1d7f6cb56e7698856e5ef870
     }
 
     stopMove() : void {
         this.xVelocity = 0;
+        this.yVelocity = 0;
     }
 
     hit(sprite : Character) : boolean {

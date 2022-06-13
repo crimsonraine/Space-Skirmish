@@ -17,6 +17,7 @@ canvas.addEventListener("click", function(event: MouseEvent) {
 document.addEventListener("keydown", function (event) {
     //Handle keydown events
     //Get the key that was pressed: event.key
+<<<<<<< HEAD
     switch(event.key) {
         case 'j':
             player.leftPress = true;
@@ -42,6 +43,23 @@ document.addEventListener("keydown", function (event) {
         case 'n':
             player2.atk(player);
             break;
+=======
+    if (event.key === "ArrowLeft")
+        player.leftPress = true
+    if (event.key === "ArrowRight")
+        player.rightPress = true
+    if (event.key === "ArrowUp"){
+        if (!event.repeat)
+            player.moveUp();
+    }
+    if (event.key === "a")
+        player2.leftPress = true
+    if (event.key === "d")
+        player2.rightPress = true
+    if (event.key === "w"){
+        if (!event.repeat)
+            player2.moveUp();
+>>>>>>> efdb5f343f42c5fe1d7f6cb56e7698856e5ef870
     }
 });
 document.addEventListener("keyup", function (event) {
@@ -90,4 +108,4 @@ document.addEventListener("keyup", function (event) {
 // }
 
 // end of game code
-//if (enemy.health <= 0 || player.health <= 0) {
+//if (player2.health <= 0 || player.health <= 0) {
