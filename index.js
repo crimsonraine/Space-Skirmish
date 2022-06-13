@@ -373,4 +373,19 @@ window.addEventListener('keyup', (event) => {
         //     break
 
     }
-})
+});
+
+let drawAnimationFrameID = requestAnimationFrame(draw);
+// Functions to control (pause/continue) the game loop.
+
+function pauseDrawing(){
+    if (drawAnimationFrameID !== undefined) cancelAnimationFrame(drawAnimationFrameID);
+    drawAnimationFrameID = undefined;
+}
+
+function continueDrawing(){
+    if (drawAnimationFrameID === undefined) drawAnimationFrameID = requestAnimationFrame(draw);
+}
+
+document.querySelector("#pause").addEventListener("click",pauseDrawing);
+document.querySelector("#continue").addEventListener("click",continueDrawing);
