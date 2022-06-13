@@ -22,12 +22,12 @@ button {
     border-radius:4px;
     color:#932ea7;
     background-color:#1bafdb;
-    border: 2px solid #d71212;
+    border: 2px solid #ffffff;
 }
 button {   transition-duration: 0.4s; }
 button:hover {
     font-size:1.6em;
-    background-color:#c48105;
+    background-color:#1e8fd6;
 }
 .screen {
     padding: 20px;     
