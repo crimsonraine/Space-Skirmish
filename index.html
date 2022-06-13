@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canvas Game Template</title>
     <link href="/styles/styles.css" type="text/css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+
+
 
     <style>
         .center {
@@ -38,35 +41,86 @@
     <!-- smaller red container div -->
     <div class="redCont">
       <!-- player health -->
-      <div id="playerHealth">
+      <div class="playerHealth3">
         <div style="background-color: red; height: 30px; width: 100%"></div>
-        <div class="playerHealth2"></div>
+        <div 
+          id="playerHealth"
+          style="
+            position: absolute;
+            background: #818cf8;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+          "
+        ></div>
       </div>
   
       <!-- timer -->
-      <div class="timer">10</div>
+      <div id="timer"
+      style="
+          background-color: black;
+          width: 100px;
+          height: 50px;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          border: 4px solid white;
+        ">10</div>
 
       <!-- enemy health -->
-      <div id="enemyHealth">
+      <div class="enemyHealth3">
         <div style="background-color: red; height: 30px; width: 100%"></div>
-        <div class="enemyHealth2"></div>
+        <div
+          id="enemyHealth"
+          style="
+            position: absolute;
+            background: #818cf8;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+          "
+        ></div>
       </div>
       <div></div>
+    </div>
+    <div
+      id="displayText"
+      style="
+        position: absolute;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: none;
+      "
+    >
+      Tie
     </div>
     <canvas height="500" width="1000" style = "background: url('./imgs/Krossroads.jpg')"></canvas>
   
     <!-- imports -->
+    <script src="utils.js"></script>
     <script src="classes.js"></script>
     <script src="index.js"></script>
-    <!-- <script src="character_list.js"></script>
+    <script src="character_list.js"></script>
     <script src="gameloop.js"></script>
     <script src="actors.js"></script>
     <script src="characters.js"></script>
-    <script src="event_handlers.js"></script> -->
+    <script src="event_handlers.js"></script>
     <!-- <script src="TitleScreen.js"></script> -->
     <!-- <script src="KeyboardMenu.js"></script>
     <script src="Overworld.js"></script>
     <script src="init.js"></script> -->
-
+    <div id='start-screen' class='screen' style='display:block'>
+      <button onclick='startGame()'>Start Game</button>
+    </div>
+    <canvas id="canvas" style='display:none'></canvas>
 </body>
 </html>

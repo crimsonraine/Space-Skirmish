@@ -31,10 +31,6 @@ class Character extends Actor{
         this.width = 150;
         this.img = new Image();
         this.hp = 100;
-<<<<<<< HEAD
-=======
-        this.gravity = 0.5;
->>>>>>> efdb5f343f42c5fe1d7f6cb56e7698856e5ef870
         this.velocity = 0;
         this.leftPress = false;
         this.rightPress = false;
@@ -51,16 +47,10 @@ class Character extends Actor{
 
 
     update() : void { // for movemen5
-<<<<<<< HEAD
-
-        this.x += this.xVelocity;
-        this.y += GRAVITY + this.yVelocity;
-=======
-        this.yVelocity += this.gravity
+        this.yVelocity += GRAVITY
 
         this.x += this.xVelocity;
         this.y += this.yVelocity;
->>>>>>> efdb5f343f42c5fe1d7f6cb56e7698856e5ef870
 
         // hit the floor
         if (this.y >= 7/8 * canvas.height - this.height){
@@ -106,20 +96,6 @@ class Character extends Actor{
     }
 
     moveLeft() : void {
-<<<<<<< HEAD
-        this.xVelocity -= 2;
-        this.x -= 5;
-    }
-
-    moveRight() : void {
-        this.xVelocity += 2;
-        this.x += 5;
-    }
-
-    moveUp() : void {
-        this.yVelocity -= 5;
-        this.gravity = 0;
-=======
         this.xVelocity = -2
         this.x -= 5
     }
@@ -131,7 +107,6 @@ class Character extends Actor{
 
     moveUp() : void {
         this.yVelocity -= 10
->>>>>>> efdb5f343f42c5fe1d7f6cb56e7698856e5ef870
     }
 
     stopMove() : void {
