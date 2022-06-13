@@ -49,8 +49,29 @@ const player = new Fighter({
             framesMax: 8
         },
         run: {
-
+            imageSrc: './imgs/samuraiMack/Run.png',
+            framesMax: 8
+        },
+        jump: {
+            imageSrc: './imgs/samuraiMack/Jump.png',
+            framesMax: 2
+        }, 
+        fall: {
+            imageSrc: './imgs/samuraiMack/Fall.png',
+            framesMax: 2
+        }, 
+        attack1: {
+            imageSrc: './imgs/samuraiMack/Attack1.png',
+            framesMax: 6
         }
+    },
+    attackBox: {
+        offset: {
+            x: 100,
+            y: 50
+        },
+        width: 160,
+        height: 50
     }
 })
 
@@ -67,6 +88,44 @@ const enemy = new Fighter({
     offset: {
         x: -50,
         y: 0
+    },
+    imageSrc: './imgs/kenji/Idle.png',
+    framesMax: 4,
+    scale: 2.5,
+    offset: {
+        x: 187,
+        x2: 63,
+        y: 170
+    },
+    sprites: {
+        idle: {
+            imageSrc: './imgs/kenji/Idle.png',
+            framesMax: 4
+        },
+        run: {
+            imageSrc: './imgs/kenji/Run.png',
+            framesMax: 8
+        },
+        jump: {
+            imageSrc: './imgs/kenji/Jump.png',
+            framesMax: 2
+        }, 
+        fall: {
+            imageSrc: './imgs/kenji/Fall.png',
+            framesMax: 2
+        }, 
+        attack1: {
+            imageSrc: './imgs/kenji/Attack1.png',
+            framesMax: 4
+        }
+    },
+    attackBox: {
+        offset: {
+            x: 0,
+            y: 0
+        },
+        width: 100,
+        height: 50
     }
 })
 
@@ -141,74 +200,93 @@ function animate() {
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
-    if (player.position.y < enemy.position.y) {
-        player.attackBox.offset.x = 50
-        enemy.attackBox.offset.y = -50
-        enemy.attackBox.offset.x = 0
-        //find better way to do this
-        player.attackBox.width = 50
-        player.attackBox.height = 100
-        enemy.attackBox.width = 50
-        enemy.attackBox.height = 100
-    } else if (player.position.y > enemy.position.y) {
-        player.attackBox.offset.y = -50
-        player.attackBox.offset.x = 0
-        enemy.attackBox.offset.x = 50
-        //find better way to do this
-        player.attackBox.width = 50
-        player.attackBox.height = 100
-        enemy.attackBox.width = 50
-        enemy.attackBox.height = 100
-    } else if (player.position.x > enemy.position.x) {
-        player.attackBox.offset.x = -50
-        enemy.attackBox.offset.x = 0
-        player.attackBox.offset.y = 0
-        enemy.attackBox.offset.y = 0
-        //find better way to do this
-        player.attackBox.width = 100
-        player.attackBox.height = 50
-        enemy.attackBox.width = 100
-        enemy.attackBox.height = 50
-    } else {
-        player.attackBox.offset.x = 0
-        enemy.attackBox.offset.x = -50
-        player.attackBox.offset.y = 0
-        enemy.attackBox.offset.y = 0
-        //find better way to do this
-        player.attackBox.width = 100
-        player.attackBox.height = 50
-        enemy.attackBox.width = 100
-        enemy.attackBox.height = 50
-    }
+    // if (player.position.y < enemy.position.y) {
+    //     player.attackBox.offset.x = 50
+    //     enemy.attackBox.offset.y = -50
+    //     enemy.attackBox.offset.x = 0
+    //     //find better way to do this
+    //     player.attackBox.width = 50
+    //     player.attackBox.height = 100
+    //     enemy.attackBox.width = 50
+    //     enemy.attackBox.height = 100
+    // } else if (player.position.y > enemy.position.y) {
+    //     player.attackBox.offset.y = -50
+    //     player.attackBox.offset.x = 0
+    //     enemy.attackBox.offset.x = 50
+    //     //find better way to do this
+    //     player.attackBox.width = 50
+    //     player.attackBox.height = 100
+    //     enemy.attackBox.width = 50
+    //     enemy.attackBox.height = 100
+    // } else if (player.position.x > enemy.position.x) {
+
+    // to be actually used
+    // if (player.position.x > enemy.position.x) {
+    //     player.attackBox.offset.x = -50
+    //     enemy.attackBox.offset.x = 0
+    //     player.attackBox.offset.y = 0
+    //     enemy.attackBox.offset.y = 0
+    // } else {
+    //     player.attackBox.offset.x = 0
+    //     enemy.attackBox.offset.x = -50
+    //     player.attackBox.offset.y = 0
+    //     enemy.attackBox.offset.y = 0
+    // }
     background.update()
     shop.update()
     player.update()
-    //enemy.update()
+    enemy.update()
 
     player.velocity.x = 0
     enemy.velocity.x = 0
     // player movement
     if (keys.a.pressed && player.lastKey === 'a' && player.position.x > 0) {
         player.velocity.x = -player.xspeed
+        player.switchSprite('run')
     } else if (keys.d.pressed && player.lastKey === 'd' && player.position.x + player.offset.x2< canvas.width - player.width) {
         player.velocity.x = player.xspeed
+        player.switchSprite('run')
+    } else {
+        player.switchSprite('idle')
+    }
+
+    if (player.velocity.y < 0) {
+        player.switchSprite('jump')
+    } else if (player.velocity.y > 0) {
+        player.switchSprite('fall')
     }
     // enemy movement
     if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft' && enemy.position.x > 0) {
         enemy.velocity.x = -enemy.xspeed
-    } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight' && enemy.position.x + enemy.offset.x < canvas.width - enemy.width) {
+        enemy.switchSprite('run')
+    } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight' && enemy.position.x + enemy.offset.x2 < canvas.width - enemy.width) {
         enemy.velocity.x = enemy.xspeed
+        enemy.switchSprite('run')
+    } else {
+        enemy.switchSprite('idle')
+    }
+
+    if (enemy.velocity.y < 0) {
+        enemy.switchSprite('jump')
+    } else if (enemy.velocity.y > 0) {
+        enemy.switchSprite('fall')
     }
 
     //detect collision yas
     if (rectangularCollision({
         rectangle1: player,
         rectangle2: enemy
-    }) && player.isAttacking) {
+    }) && player.isAttacking &&
+    player.framesCurrent === 4) {
             console.log("yas")
             enemy.takeHit()
             player.isAttacking = false // immediately sets is attacking to false again to allow for only one hit at a time
             document.querySelector('#enemyHealth').style.width = enemy.health + '%'
+    }
+
+    // if player misses
+    if (player.isAttacking && player.framesCurrent === 4) {
+        player.isAttacking = false
     }
 
     if (rectangularCollision({
