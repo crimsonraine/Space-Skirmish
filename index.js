@@ -40,8 +40,8 @@ const player = new Fighter({
     scale: 2.5,
     offset: {
         x: 187,
-        x2: 45,
-        y: 220
+        x2: 55,
+        y: 215
     },
     sprites: {
         idle: {
@@ -77,48 +77,48 @@ const player = new Fighter({
             framesMax: 11
         },
         idleFlip: {
-            imageSrc: './imgs2/Knight_Char/Idle.png',
+            imageSrc: './imgs2/KnightFlip/Idle.png',
             framesMax: 11
         },
         runFlip: {
-            imageSrc: './imgs2/Knight_Char/Run.png',
+            imageSrc: './imgs2/KnightFlip/Run.png',
             framesMax: 8
         },
         jumpFlip: {
-            imageSrc: './imgs2/Knight_Char/Jump.png',
+            imageSrc: './imgs2/KnightFlip/Jump.png',
             framesMax: 3
         }, 
         fallFlip: {
-            imageSrc: './imgs2/Knight_Char/Fall.png',
+            imageSrc: './imgs2/KnightFlip/Fall.png',
             framesMax: 3
         }, 
         attack1Flip: {
-            imageSrc: './imgs2/Knight_Char/Attack1.png',
+            imageSrc: './imgs2/KnightFlip/Attack1.png',
             framesMax: 7
         },
         takeHitFlip: {
-            imageSrc: './imgs2/Knight_Char/Take Hit.png',
+            imageSrc: './imgs2/KnightFlip/Take Hit.png',
             framesMax: 4
         }, 
         deathFlip: {
-            imageSrc: './imgs2/Knight_Char/Death.png',
+            imageSrc: './imgs2/KnightFlip/Death.png',
             framesMax: 11
         }
     },
     attackBox: {
         offset: {
-            x: 100,
-            y: 50
+            x: 80,
+            y: -20
         },
-        width: 160,
+        width: 60,
         height: 50
     }
 })
 
 const enemy = new Fighter({
     position: {
-        x: 400,
-        y: 100
+        x: 900,
+        y: 0
     },
     velocity: {
         x: 0,
@@ -129,9 +129,9 @@ const enemy = new Fighter({
     framesMax: 10,
     scale: 2.5,
     offset: {
-        x: 187,
+        x: 167,
         x2: 63,
-        y: 185
+        y: 183
     },
     sprites: {
         idle: {
@@ -201,10 +201,10 @@ const enemy = new Fighter({
     },
     attackBox: {
         offset: {
-            x: -170,
-            y: 50
+            x: 50,
+            y: -26
         },
-        width: 170,
+        width: 118,
         height: 50
     }
 })
@@ -339,13 +339,13 @@ function animate() {
     if (player.position.x > enemy.position.x) {
         player.switchSprite2(player.actionName)
         enemy.switchSprite2(enemy.actionName)
-        player.attackBox.offset.x = -170
-        enemy.attackBox.offset.x = 100
+        player.attackBox.offset.x = -20
+        enemy.attackBox.offset.x = -50
     } else {
         player.switchSprite(player.actionName)
         enemy.switchSprite(enemy.actionName)
-        player.attackBox.offset.x = 100
-        enemy.attackBox.offset.x = -170
+        player.attackBox.offset.x = 80
+        enemy.attackBox.offset.x = 50
     }
 
     //detect collision yas & enemy hit
@@ -368,14 +368,14 @@ function animate() {
         rectangle1: enemy,
         rectangle2: player
     }) && enemy.isAttacking &&
-    enemy.framesCurrent === 2) {
-            player.takeHit(0.5)
+    enemy.framesCurrent === 5) {
+            player.takeHit()
             enemy.isAttacking = false // immediately sets is attacking to false again to allow for only one hit at a time
             document.querySelector('#playerHealth').style.width = player.health + '%'
     }
 
     // if enemy misses
-    if (enemy.isAttacking && enemy.framesCurrent === 2) {
+    if (enemy.isAttacking && enemy.framesCurrent === 5) {
         enemy.isAttacking = false
     }
 
@@ -407,7 +407,7 @@ window.addEventListener('keydown', (event) => {
                 player.jump++
                 break
             case 's':
-                player.attack()
+                if (!player.cooldown) player.attack()
                 break
         }
 
@@ -431,7 +431,7 @@ window.addEventListener('keydown', (event) => {
             enemy.jump++
             break
         case 'ArrowDown':
-            enemy.attack()
+            if (!enemy.cooldown) enemy.attack()
             break
 
     }
@@ -446,6 +446,11 @@ window.addEventListener('keyup', (event) => {
         case 'a':
             keys.a.pressed = false
             break
+        case 's':
+            setTimeout(() => {
+                player.cooldown = false
+            }, 500)
+            break
         // case 'w':
         //     keys.w.pressed = false
         //     break
@@ -455,6 +460,11 @@ window.addEventListener('keyup', (event) => {
             break
         case 'ArrowLeft':
             keys.ArrowLeft.pressed = false
+            break
+        case 'ArrowDown':
+            setTimeout(() => {
+                enemy.cooldown = false
+            }, 500)
             break
         // case 'ArrowUp':
         //     keys.ArrowUp.pressed = false

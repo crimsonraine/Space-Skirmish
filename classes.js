@@ -19,6 +19,7 @@ class Sprite {
       this.framesElapsed = 0
       this.framesHold = 5
       this.offset = offset
+      this.cooldown
     }
     draw() {
         c.drawImage(
@@ -123,10 +124,10 @@ class Fighter extends Sprite {
         this.attackBox.position.y = this.position.y + this.attackBox.offset.y
 
         // draw the attackbox
-        // c.fillRect(this.attackBox.position.x, 
-        //     this.attackBox.position.y, 
-        //     this.attackBox.width, 
-        //     this.attackBox.height)
+        c.fillRect(this.attackBox.position.x, 
+            this.attackBox.position.y, 
+            this.attackBox.width, 
+            this.attackBox.height)
 
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
@@ -156,6 +157,10 @@ class Fighter extends Sprite {
           this.switchSprite(this.actionName)
         }
         this.isAttacking = true
+        this.cooldown = true
+        // setTimeout(() => {
+        //     this.cooldown = false
+        // }, 1000)
     }
     takeHit(numHits = 1) {
         this.health -= 20 * numHits
