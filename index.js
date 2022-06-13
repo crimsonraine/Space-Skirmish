@@ -19,7 +19,7 @@ const background = new Sprite({
 const shop = new Sprite({
     position: {
         x: 600,
-        y: 224
+        y: 143
     },
     imageSrc: './imgs/shop.png',
     scale: 2.75,
@@ -41,7 +41,7 @@ const player = new Fighter({
     offset: {
         x: 187,
         x2: 45,
-        y: 155
+        y: 235
     },
     sprites: {
         idle: {
@@ -95,7 +95,7 @@ const enemy = new Fighter({
     offset: {
         x: 187,
         x2: 63,
-        y: 170
+        y: 250
     },
     sprites: {
         idle: {
