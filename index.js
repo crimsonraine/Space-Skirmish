@@ -357,7 +357,7 @@ function animate() {
         rectangle2: player
     }) && enemy.isAttacking &&
     enemy.framesCurrent === 2) {
-            player.takeHit()
+            player.takeHit(0.5)
             enemy.isAttacking = false // immediately sets is attacking to false again to allow for only one hit at a time
             document.querySelector('#playerHealth').style.width = player.health + '%'
     }
