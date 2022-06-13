@@ -7,7 +7,7 @@ body {
     align-items:center;
     background-color:#48db1b;
     font-family: 'Courier New', Courier, monospace;
-    background-image: url("space_background.webp");
+    background-image: url("space.png");
 }
 
 button {
