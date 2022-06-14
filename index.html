@@ -28,10 +28,10 @@
   <h1>Space Skirmish!</h1>
   <div style="position: relative; display: inline-block">
     <div class="redCont">
-      <div class="playerHealth3">
+      <div class="enemyHealth3">
         <div style="background-color: red; height: 30px; width: 100%"></div>
         <div 
-          id="playerHealth"
+          id="enemyHealth"
           style="
             position: absolute;
             background: #818cf8;
@@ -56,10 +56,10 @@
           border: 4px solid white;
         "></div>
 
-      <div class="enemyHealth3">
+      <div class="playerHealth3">
         <div style="background-color: red; height: 30px; width: 100%"></div>
         <div
-          id="enemyHealth"
+          id="playerHealth"
           style="
             position: absolute;
             background: #818cf8;
@@ -77,6 +77,11 @@
       style="
         position: absolute;
         color: white;
+        text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
         align-items: center;
         justify-content: center;
         top: 0;

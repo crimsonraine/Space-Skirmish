@@ -97,7 +97,7 @@ const player = new Fighter({
             framesMax: 7
         },
         attack2Flip: {
-            imageSrc: './imgs2/KnightFlip/Attack2.png',
+            imageSrc: './imgs2/KnightFlip/2Attack2.png',
             framesMax: 7
         },
         takeHitFlip: {
@@ -109,12 +109,13 @@ const player = new Fighter({
             framesMax: 11
         }
     },
+    //ANNOYING
     attackBox: {
         offset: {
-            x: 60,
+            x: -100,
             y: -30
         },
-        width: 128,
+        width: 158,
         height: 100
     }
 })
@@ -203,12 +204,13 @@ const enemy = new Fighter({
             framesMax: 7
         }
     },
+    //ANNOYING
     attackBox: {
         offset: {
             x: 50,
             y: -30
         },
-        width: 128,
+        width: 158,
         height: 100
     }
 })
@@ -291,38 +293,11 @@ function animate() {
     player.velocity.x = 0
     enemy.velocity.x = 0
     // player movement
-    if (keys.a.pressed && player.lastKey === 'a' && player.position.x > 0) {
-        player.velocity.x = -player.xspeed
-        player.actionName = 'run'
-        // player.switchSprite('run')
-    } else if (keys.d.pressed && player.lastKey === 'd' && player.position.x + player.offset.x2< canvas.width - player.width) {
-        player.velocity.x = player.xspeed
-        player.actionName = 'run'
-        // player.switchSprite('run')
-    } else {
-        player.actionName = 'idle'
-        // player.switchSprite(player.actionName)
-    }
-
-    if (player.velocity.y < 0) {
-        player.actionName = 'jump'
-        // player.switchSprite(player.actionName)
-    } else if (player.velocity.y > 0) {
-        if (player.jump < 2){
-            player.actionName = 'fall'
-        } else {
-            if (!player.cooldown2)player.doubleJumpAttack()
-            //player.actionName = 'attack2'
-        }
-        
-        // player.switchSprite(player.actionName)
-    }
-    // enemy movement
-    if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft' && enemy.position.x > 0) {
+    if (keys.a.pressed && enemy.lastKey === 'a' && enemy.position.x > 0) {
         enemy.velocity.x = -enemy.xspeed
         enemy.actionName = 'run'
-        // enemy.switchSprite(enemy.actionName)
-    } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight' && enemy.position.x + enemy.offset.x2 < canvas.width - enemy.width) {
+        // enemy.switchSprite('run')
+    } else if (keys.d.pressed && enemy.lastKey === 'd' && enemy.position.x + enemy.offset.x2< canvas.width - enemy.width) {
         enemy.velocity.x = enemy.xspeed
         enemy.actionName = 'run'
         // enemy.switchSprite('run')
@@ -341,20 +316,48 @@ function animate() {
             if (!enemy.cooldown2)enemy.doubleJumpAttack()
             //enemy.actionName = 'attack2'
         }
+        
         // enemy.switchSprite(enemy.actionName)
     }
+    // player movement
+    if (keys.ArrowLeft.pressed && player.lastKey === 'ArrowLeft' && player.position.x > 0) {
+        player.velocity.x = -player.xspeed
+        player.actionName = 'run'
+        // player.switchSprite(player.actionName)
+    } else if (keys.ArrowRight.pressed && player.lastKey === 'ArrowRight' && player.position.x + player.offset.x2 < canvas.width - player.width) {
+        player.velocity.x = player.xspeed
+        player.actionName = 'run'
+        // player.switchSprite('run')
+    } else {
+        player.actionName = 'idle'
+        // player.switchSprite(player.actionName)
+    }
 
+    if (player.velocity.y < 0) {
+        player.actionName = 'jump'
+        // player.switchSprite(player.actionName)
+    } else if (player.velocity.y > 0) {
+        if (player.jump < 2){
+            player.actionName = 'fall'
+        } else {
+            if (!player.cooldown2)player.doubleJumpAttack()
+            //player.actionName = 'attack2'
+        }
+        // player.switchSprite(player.actionName)
+    }
+
+    //TODO
     // to be actually used
     if (player.position.x > enemy.position.x) {
         player.switchSprite2(player.actionName)
         enemy.switchSprite2(enemy.actionName)
-        player.attackBox.offset.x = -80
+        player.attackBox.offset.x = -100
         enemy.attackBox.offset.x = 50
     } else {
         player.switchSprite(player.actionName)
         enemy.switchSprite(enemy.actionName)
         player.attackBox.offset.x = 60
-        enemy.attackBox.offset.x = -50
+        enemy.attackBox.offset.x = -100
     }
 
     //detect collision yas & enemy hit
@@ -387,7 +390,6 @@ function animate() {
             document.querySelector('#enemyHealth').style.width = enemy.health + '%'
     }
 
-    // TODO:
     // if player misses
     if (player.isAttacking2) {
         player.isAttacking2 = false
@@ -423,7 +425,6 @@ function animate() {
             document.querySelector('#playerHealth').style.width = player.health + '%'
     }
 
-    // TODO:
     // if enemy misses DJA
     if (enemy.isAttacking2) {
         enemy.isAttacking2 = false
@@ -438,52 +439,52 @@ function animate() {
 animate()
 
 window.addEventListener('keydown', (event) => {
-    // player keys
-    if (!player.dead) {
+    // enemy keys
+    if (!enemy.dead) {
         switch (event.key) {
             case 'd':
                 keys.d.pressed = true
-                player.lastKey = 'd'
+                enemy.lastKey = 'd'
                 break
             case 'a':
                 keys.a.pressed = true
-                player.lastKey = 'a'
+                enemy.lastKey = 'a'
                 break
             case 'w':
-                if (player.jump == 0)
-                    player.velocity.y = -15
-                else if (player.jump == 1)
-                    player.velocity.y = -12
+                if (enemy.jump == 0)
+                enemy.velocity.y = -15
+                else if (enemy.jump == 1)
+                enemy.velocity.y = -12
                     // player.doubleJumpAttack()
-                player.jump++
+                    enemy.jump++
                 break
             case 's':
-                if (!player.cooldown) player.attack()
+                if (!enemy.cooldown) enemy.attack()
                 break
         }
 
     }
-    // enemy keys
-    if (!enemy.dead) {
+    // player keys
+    if (!player.dead) {
         switch (event.key) {
         case 'ArrowRight':
             keys.ArrowRight.pressed = true
-            enemy.lastKey = 'ArrowRight'
+            player.lastKey = 'ArrowRight'
             break
         case 'ArrowLeft':
             keys.ArrowLeft.pressed = true
-            enemy.lastKey = 'ArrowLeft'
+            player.lastKey = 'ArrowLeft'
             break
         case 'ArrowUp':
-            if (enemy.jump == 0)
-                enemy.velocity.y = -15
-            else if (enemy.jump == 1)
-                enemy.velocity.y = -12
-                // enemy.doubleJumpAttack()
-            enemy.jump++
+            if (player.jump == 0)
+                player.velocity.y = -15
+            else if (player.jump == 1)
+                player.velocity.y = -12
+                // player.doubleJumpAttack()
+            player.jump++
             break
         case 'ArrowDown':
-            if (!enemy.cooldown) enemy.attack()
+            if (!player.cooldown) player.attack()
             break
 
     }
@@ -500,7 +501,7 @@ window.addEventListener('keyup', (event) => {
             break
         case 's':
             setTimeout(() => {
-                player.cooldown = false
+                enemy.cooldown = false
             }, 500)
             break
         // case 'w':
@@ -515,7 +516,7 @@ window.addEventListener('keyup', (event) => {
             break
         case 'ArrowDown':
             setTimeout(() => {
-                enemy.cooldown = false
+                player.cooldown = false
             }, 500)
             break
         // case 'ArrowUp':
