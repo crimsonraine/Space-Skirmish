@@ -1,8 +1,50 @@
+@font-face {
+    font-family: font;
+    src: url(good-times-rg.otf);
+}
+  
+html {
+    font-family: font;
+}
+
 h1 {
-font-size: 40px;
-text-align: center;
-margin: 10px 0;
-font-family: 'Dancing Script', serif;
+    font-size: 60px;
+    text-align: center;
+    margin: 10px 0;
+    color: bisque
+}
+
+table {
+    font-size: 40px;
+    text-align: center;
+    margin: 10px 0;
+}
+
+#player1 {
+    margin: 0;
+    position: absolute;
+    bottom: 75%;
+    left: 25%;
+    color: aqua;
+}
+
+#player2 {
+    margin: 0;
+    position: absolute;
+    bottom: 75%;
+    right: 25%;
+    color: hotpink;
+}
+
+td {
+    margin: 0;
+    position: absolute;
+    color: white;
+}
+
+body {
+    background-image: url('space.png');
+    background-size: cover;
 }
 
 .center {
@@ -12,4 +54,26 @@ font-family: 'Dancing Script', serif;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+
+button {
+    border:none;
+    appearance:none;
+    outline:none;
+    display:inline-block;
+    font-size:1.5em;
+    cursor:pointer;
+    text-decoration:none;
+    padding:12px 48px 12px 48px;
+    border-radius:4px;
+    color:#932ea7;
+    background-color:#1bafdb;
+    border: 2px solid #ffffff;
+    margin-bottom: 60px;
+}
+
+button {   transition-duration: 0.4s; }
+button:hover {
+    font-size:1.6em;
+    background-color:#1e8fd6;
 }
