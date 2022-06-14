@@ -28,7 +28,7 @@ const shop = new Sprite({
 
 const player = new Fighter({
     position: {
-        x: 0,
+        x: 900,
         y: 0
     },
     velocity: {
@@ -96,6 +96,10 @@ const player = new Fighter({
             imageSrc: './imgs2/KnightFlip/Attack1.png',
             framesMax: 7
         },
+        attack2Flip: {
+            imageSrc: './imgs2/KnightFlip/Attack2.png',
+            framesMax: 7
+        },
         takeHitFlip: {
             imageSrc: './imgs2/KnightFlip/TakeHit.png',
             framesMax: 4
@@ -108,16 +112,16 @@ const player = new Fighter({
     attackBox: {
         offset: {
             x: 60,
-            y: -20
+            y: -30
         },
         width: 128,
-        height: 50
+        height: 100
     }
 })
 
 const enemy = new Fighter({
     position: {
-        x: 900,
+        x: 0,
         y: 0
     },
     velocity: {
@@ -157,7 +161,7 @@ const enemy = new Fighter({
         attack2Flip: {
             imageSrc: './imgs2/Fantasy_Fighter_Char/Attack2.png',
             framesMax: 8
-        }, 
+        },
         takeHitFlip: {
             imageSrc: './imgs2/Fantasy_Fighter_Char/Take hit.png',
             framesMax: 3
@@ -202,10 +206,10 @@ const enemy = new Fighter({
     attackBox: {
         offset: {
             x: 50,
-            y: -26
+            y: -30
         },
         width: 128,
-        height: 50
+        height: 100
     }
 })
 
@@ -231,6 +235,15 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
         rectangle1.attackBox.position.x <= rectangle2.position.x + rectangle2.width &&
         rectangle1.attackBox.position.y + rectangle1.attackBox.height >= rectangle2.position.y &&
         rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height
+    )
+}
+
+function characterCollision({ rectangle1, rectangle2 }) {
+    return (
+        rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
+        rectangle1.position.x <= rectangle2.position.x + rectangle2.width &&
+        rectangle1.position.y + rectangle1.height >= rectangle2.position.y &&
+        rectangle1.position.y <= rectangle2.position.y + rectangle2.height
     )
 }
 
@@ -295,7 +308,13 @@ function animate() {
         player.actionName = 'jump'
         // player.switchSprite(player.actionName)
     } else if (player.velocity.y > 0) {
-        player.actionName = 'fall'
+        if (player.jump < 2){
+            player.actionName = 'fall'
+        } else {
+            if (!player.cooldown2)player.doubleJumpAttack()
+            //player.actionName = 'attack2'
+        }
+        
         // player.switchSprite(player.actionName)
     }
     // enemy movement
@@ -316,7 +335,12 @@ function animate() {
         enemy.actionName = 'jump'
         // enemy.switchSprite(enemy.actionName)
     } else if (enemy.velocity.y > 0) {
-        enemy.actionName = 'fall'
+        if (enemy.jump < 2){
+            enemy.actionName = 'fall'
+        } else {
+            if (!enemy.cooldown2)enemy.doubleJumpAttack()
+            //enemy.actionName = 'attack2'
+        }
         // enemy.switchSprite(enemy.actionName)
     }
 
@@ -338,30 +362,71 @@ function animate() {
         rectangle1: player,
         rectangle2: enemy
     }) && player.isAttacking &&
-    player.framesCurrent === 4) {
+    player.framesCurrent >= 4) {
             enemy.takeHit()
             player.isAttacking = false // immediately sets is attacking to false again to allow for only one hit at a time
             document.querySelector('#enemyHealth').style.width = enemy.health + '%'
     }
 
     // if player misses
-    if (player.isAttacking && player.framesCurrent === 4) {
+    if (player.isAttacking && player.framesCurrent >= 4) {
         player.isAttacking = false
     }
 
+    // player double jump attack
+    if (rectangularCollision({
+        rectangle1: player,
+        rectangle2: enemy
+    }) && player.isAttacking2) {
+            enemy.takeHit(1.5)
+            player.isAttacking2 = false // immediately sets is attacking to false again to allow for only one hit at a time
+            player.cooldown2 = true
+            setTimeout(() => {
+                player.cooldown2 = false
+            }, 1000)
+            document.querySelector('#enemyHealth').style.width = enemy.health + '%'
+    }
+
+    // TODO:
+    // if player misses
+    if (player.isAttacking2) {
+        player.isAttacking2 = false
+    }
+
+    // enemy regular attack
     if (rectangularCollision({
         rectangle1: enemy,
         rectangle2: player
     }) && enemy.isAttacking &&
-    enemy.framesCurrent === 5) {
+    enemy.framesCurrent >= 5) {
             player.takeHit()
             enemy.isAttacking = false // immediately sets is attacking to false again to allow for only one hit at a time
             document.querySelector('#playerHealth').style.width = player.health + '%'
     }
 
-    // if enemy misses
-    if (enemy.isAttacking && enemy.framesCurrent === 5) {
+    // if enemy misses RA
+    if (enemy.isAttacking && enemy.framesCurrent >= 5) {
         enemy.isAttacking = false
+    }
+
+    // enemy double jump attack
+    if (rectangularCollision({
+        rectangle1: enemy,
+        rectangle2: player
+    }) && enemy.isAttacking2) {
+            player.takeHit(1.5)
+            enemy.isAttacking2 = false // immediately sets is attacking to false again to allow for only one hit at a time
+            enemy.cooldown2 = true
+            setTimeout(() => {
+                enemy.cooldown2 = false
+            }, 1000)
+            document.querySelector('#playerHealth').style.width = player.health + '%'
+    }
+
+    // TODO:
+    // if enemy misses DJA
+    if (enemy.isAttacking2) {
+        enemy.isAttacking2 = false
     }
 
     // end game based on health
@@ -389,6 +454,7 @@ window.addEventListener('keydown', (event) => {
                     player.velocity.y = -15
                 else if (player.jump == 1)
                     player.velocity.y = -12
+                    // player.doubleJumpAttack()
                 player.jump++
                 break
             case 's':
@@ -413,6 +479,7 @@ window.addEventListener('keydown', (event) => {
                 enemy.velocity.y = -15
             else if (enemy.jump == 1)
                 enemy.velocity.y = -12
+                // enemy.doubleJumpAttack()
             enemy.jump++
             break
         case 'ArrowDown':

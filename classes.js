@@ -19,7 +19,6 @@ class Sprite {
       this.framesElapsed = 0
       this.framesHold = 5
       this.offset = offset
-      this.cooldown
     }
     draw() {
         c.drawImage(
@@ -89,6 +88,7 @@ class Fighter extends Sprite {
       }
       this.color = color
       this.isAttacking
+      this.isAttacking2
       this.health = 100
       this.framesCurrent = 0
       this.framesElapsed = 0
@@ -96,6 +96,8 @@ class Fighter extends Sprite {
       this.xspeed = 10
       this.sprites = sprites
       this.dead = false
+      this.cooldown
+      this.cooldown2
   
       for (const sprite in this.sprites) {
         sprites[sprite].image = new Image()
@@ -181,6 +183,15 @@ class Fighter extends Sprite {
           }
         }
     }
+    doubleJumpAttack() {
+      this.actionName = 'attack2'
+        if (player.position.x > enemy.position.x) {
+          this.switchSprite2(this.actionName)
+        } else {
+          this.switchSprite(this.actionName)
+        }
+      this.isAttacking2 = true
+    }
     switchSprite(sprite) {
       // override with death
       if (!this.dead) {
@@ -188,6 +199,9 @@ class Fighter extends Sprite {
           if (this.framesCurrent === this.sprites.death.framesMax - 1) this.dead = true
           return
         }
+        // overriding all other animations w double jump attack animation
+        if (this.image === this.sprites.attack2.image && 
+          this.framesCurrent < this.sprites.attack2.framesMax - 1) return
         // overriding all other animations w attack animation
         if (this.image === this.sprites.attack1.image && 
             this.framesCurrent < this.sprites.attack1.framesMax - 1) return
@@ -230,6 +244,13 @@ class Fighter extends Sprite {
                     this.framesCurrent = 0
                 }
                 break
+            case 'attack2':
+                if (this.image !== this.sprites.attack2.image) {
+                    this.image = this.sprites.attack2.image
+                    this.framesMax = this.sprites.attack2.framesMax
+                    this.framesCurrent = 0
+                }
+                break
             case 'takeHit':
               if (this.image !== this.sprites.takeHit.image) {
                   this.image = this.sprites.takeHit.image
@@ -254,6 +275,9 @@ class Fighter extends Sprite {
           if (this.framesCurrent === this.sprites.deathFlip.framesMax - 1) this.dead = true
           return
         }
+        // overriding all other animations w double jump attack animation
+        if (this.image === this.sprites.attack2Flip.image && 
+          this.framesCurrent < this.sprites.attack2Flip.framesMax - 1) return
         // overriding all other animations w attack animation
         if (this.image === this.sprites.attack1Flip.image && 
             this.framesCurrent < this.sprites.attack1Flip.framesMax - 1) return
@@ -293,6 +317,13 @@ class Fighter extends Sprite {
                 if (this.image !== this.sprites.attack1Flip.image) {
                     this.image = this.sprites.attack1Flip.image
                     this.framesMax = this.sprites.attack1Flip.framesMax
+                    this.framesCurrent = 0
+                }
+                break
+            case 'attack2':
+                if (this.image !== this.sprites.attack2Flip.image) {
+                    this.image = this.sprites.attack2Flip.image
+                    this.framesMax = this.sprites.attack2Flip.framesMax
                     this.framesCurrent = 0
                 }
                 break
