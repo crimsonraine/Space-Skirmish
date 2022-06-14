@@ -259,11 +259,11 @@ function determineWinner({ player, enemy, timerId}) {
         player.takeHit(5)
         enemy.takeHit(5)
     } else if (player.health > enemy.health) {
-        document.querySelector('#displayText').innerHTML = 'Player 1 Wins'
+        document.querySelector('#displayText').innerHTML = 'Player 2 Wins'
         document.querySelector('#enemyHealth').style.width = '0%'
         enemy.takeHit(5)
     } else if (player.health < enemy.health) {
-        document.querySelector('#displayText').innerHTML = 'Player 2 Wins'
+        document.querySelector('#displayText').innerHTML = 'Player 1 Wins'
         document.querySelector('#playerHealth').style.width = '0%'
         player.takeHit(5)
     }
