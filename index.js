@@ -252,7 +252,7 @@ function characterCollision({ rectangle1, rectangle2 }) {
 function determineWinner({ player, enemy, timerId}) {
     clearTimeout(timerId)
     document.querySelector('#displayText').style.display='flex'
-    if (player.health === enemy.health) {
+    if (player.health === enemy.health || (player.health <= 0 && enemy.health <= 0)) {
         document.querySelector('#displayText').innerHTML = 'Tie'
         document.querySelector('#playerHealth').style.width = '0%'
         document.querySelector('#enemyHealth').style.width = '0%'
@@ -267,6 +267,16 @@ function determineWinner({ player, enemy, timerId}) {
         document.querySelector('#playerHealth').style.width = '0%'
         player.takeHit(5)
     }
+}
+
+function addButton(name, href) {
+    
+    let btn = document.createElement("button");
+    btn.innerHTML = name;
+    btn.onclick = function () {
+        window.location.href= href + '.html';
+    };
+    document.body.appendChild(btn);
 }
 
 let timer = 60
@@ -284,6 +294,7 @@ function decreaseTimer() {
 }
 decreaseTimer()
 
+let EndOfGame = 0;
 function animate() {
     window.requestAnimationFrame(animate)
     c.fillStyle = 'black'
@@ -437,6 +448,13 @@ function animate() {
     // end game based on health
     if (enemy.health <= 0 || player.health <= 0) {
         determineWinner({ player, enemy, timerId })
+        if (EndOfGame < 1) {
+            const element = document.getElementById('firstButton');
+            element.remove();
+            addButton('Back to Start', 'splashscreen')
+            addButton('Restart', 'index')
+            EndOfGame++
+        }
     }
 }
 
