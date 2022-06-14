@@ -107,10 +107,10 @@ const player = new Fighter({
     },
     attackBox: {
         offset: {
-            x: 80,
+            x: 60,
             y: -20
         },
-        width: 118,
+        width: 128,
         height: 50
     }
 })
@@ -134,38 +134,6 @@ const enemy = new Fighter({
         y: 183
     },
     sprites: {
-        idle: {
-            imageSrc: './imgs2/Fantasy_Fighter_Char/Idle.png',
-            framesMax: 10
-        },
-        run: {
-            imageSrc: './imgs2/Fantasy_Fighter_Char/Run.png',
-            framesMax: 8
-        },
-        jump: {
-            imageSrc: './imgs2/Fantasy_Fighter_Char/Jump.png',
-            framesMax: 3
-        }, 
-        fall: {
-            imageSrc: './imgs2/Fantasy_Fighter_Char/Fall.png',
-            framesMax: 3
-        }, 
-        attack1: {
-            imageSrc: './imgs2/Fantasy_Fighter_Char/Attack1.png',
-            framesMax: 7
-        }, 
-        attack2: {
-            imageSrc: './imgs2/Fantasy_Fighter_Char/Attack2.png',
-            framesMax: 8
-        }, 
-        takeHit: {
-            imageSrc: './imgs2/Fantasy_Fighter_Char/Take hit.png',
-            framesMax: 3
-        }, 
-        death: {
-            imageSrc: './imgs2/Fantasy_Fighter_Char/Death.png',
-            framesMax: 7
-        },
         idleFlip: {
             imageSrc: './imgs2/Fantasy_Fighter_Char/Idle.png',
             framesMax: 10
@@ -189,13 +157,45 @@ const enemy = new Fighter({
         attack2Flip: {
             imageSrc: './imgs2/Fantasy_Fighter_Char/Attack2.png',
             framesMax: 8
-        },
+        }, 
         takeHitFlip: {
             imageSrc: './imgs2/Fantasy_Fighter_Char/Take hit.png',
             framesMax: 3
         }, 
         deathFlip: {
             imageSrc: './imgs2/Fantasy_Fighter_Char/Death.png',
+            framesMax: 7
+        },
+        idle: {
+            imageSrc: './imgs2/FantasyFlip/Idle.png',
+            framesMax: 10
+        },
+        run: {
+            imageSrc: './imgs2/FantasyFlip/Run.png',
+            framesMax: 8
+        },
+        jump: {
+            imageSrc: './imgs2/FantasyFlip/Jump.png',
+            framesMax: 3
+        }, 
+        fall: {
+            imageSrc: './imgs2/FantasyFlip/Fall.png',
+            framesMax: 3
+        }, 
+        attack1: {
+            imageSrc: './imgs2/FantasyFlip/Attack1.png',
+            framesMax: 7
+        }, 
+        attack2: {
+            imageSrc: './imgs2/FantasyFlip/Attack2.png',
+            framesMax: 8
+        },
+        takeHit: {
+            imageSrc: './imgs2/FantasyFlip/Take hit.png',
+            framesMax: 3
+        }, 
+        death: {
+            imageSrc: './imgs2/FantasyFlip/Death.png',
             framesMax: 7
         }
     },
@@ -204,7 +204,7 @@ const enemy = new Fighter({
             x: 50,
             y: -26
         },
-        width: 118,
+        width: 128,
         height: 50
     }
 })
@@ -324,12 +324,12 @@ function animate() {
     if (player.position.x > enemy.position.x) {
         player.switchSprite2(player.actionName)
         enemy.switchSprite2(enemy.actionName)
-        player.attackBox.offset.x = -20
+        player.attackBox.offset.x = -80
         enemy.attackBox.offset.x = 50
     } else {
         player.switchSprite(player.actionName)
         enemy.switchSprite(enemy.actionName)
-        player.attackBox.offset.x = 80
+        player.attackBox.offset.x = 60
         enemy.attackBox.offset.x = -50
     }
 
