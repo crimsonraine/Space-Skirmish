@@ -115,7 +115,7 @@ const player = new Fighter({
             x: -100,
             y: -30
         },
-        width: 158,
+        width: 188,
         height: 100
     }
 })
@@ -207,10 +207,10 @@ const enemy = new Fighter({
     //ANNOYING
     attackBox: {
         offset: {
-            x: 50,
+            x: 20,
             y: -30
         },
-        width: 158,
+        width: 188,
         height: 100
     }
 })
@@ -254,13 +254,17 @@ function determineWinner({ player, enemy, timerId}) {
     document.querySelector('#displayText').style.display='flex'
     if (player.health === enemy.health) {
         document.querySelector('#displayText').innerHTML = 'Tie'
+        document.querySelector('#playerHealth').style.width = '0%'
+        document.querySelector('#enemyHealth').style.width = '0%'
         player.takeHit(5)
         enemy.takeHit(5)
     } else if (player.health > enemy.health) {
         document.querySelector('#displayText').innerHTML = 'Player 1 Wins'
+        document.querySelector('#enemyHealth').style.width = '0%'
         enemy.takeHit(5)
     } else if (player.health < enemy.health) {
         document.querySelector('#displayText').innerHTML = 'Player 2 Wins'
+        document.querySelector('#playerHealth').style.width = '0%'
         player.takeHit(5)
     }
 }
@@ -346,17 +350,17 @@ function animate() {
         // player.switchSprite(player.actionName)
     }
 
-    //TODO
+    //ANNOYING
     // to be actually used
     if (player.position.x > enemy.position.x) {
         player.switchSprite2(player.actionName)
         enemy.switchSprite2(enemy.actionName)
         player.attackBox.offset.x = -100
-        enemy.attackBox.offset.x = 50
+        enemy.attackBox.offset.x = 20
     } else {
         player.switchSprite(player.actionName)
         enemy.switchSprite(enemy.actionName)
-        player.attackBox.offset.x = 60
+        player.attackBox.offset.x = 20
         enemy.attackBox.offset.x = -100
     }
 
