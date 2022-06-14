@@ -97,7 +97,7 @@ const player = new Fighter({
             framesMax: 7
         },
         takeHitFlip: {
-            imageSrc: './imgs2/KnightFlip/Take Hit.png',
+            imageSrc: './imgs2/KnightFlip/TakeHit.png',
             framesMax: 4
         }, 
         deathFlip: {
@@ -110,7 +110,7 @@ const player = new Fighter({
             x: 80,
             y: -20
         },
-        width: 60,
+        width: 118,
         height: 50
     }
 })
@@ -233,21 +233,6 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
         rectangle1.attackBox.position.y <= rectangle2.position.y + rectangle2.height
     )
 }
-function attackBoxChange({ player1, player2}) {
-    if (player1.position.y < player2.position.y) {
-        player1.attackBox.offset.y = -200
-        player2.attackBox.offset.y = 200
-    } else if (player1.position.y > player2.position.y) {
-        player1.attackBox.offset.y = 200
-        player2.attackBox.offset.y = -200
-    } else if (player1.position.x > player2.position.x) {
-        player1.attackBox.offset.x = -50
-        player2.attackBox.offset.x = 0
-    } else {
-        player1.attackBox.offset.x = 0
-        player2.attackBox.offset.x = -50
-    }
-}
 
 function determineWinner({ player, enemy, timerId}) {
     clearTimeout(timerId)
@@ -340,12 +325,12 @@ function animate() {
         player.switchSprite2(player.actionName)
         enemy.switchSprite2(enemy.actionName)
         player.attackBox.offset.x = -20
-        enemy.attackBox.offset.x = -50
+        enemy.attackBox.offset.x = 50
     } else {
         player.switchSprite(player.actionName)
         enemy.switchSprite(enemy.actionName)
         player.attackBox.offset.x = 80
-        enemy.attackBox.offset.x = 50
+        enemy.attackBox.offset.x = -50
     }
 
     //detect collision yas & enemy hit
